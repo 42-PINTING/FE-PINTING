@@ -31,8 +31,8 @@ export default function WhiteBoard() {
 
   useEffect(() => {
     const newCanvas = new fabric.Canvas(canvasRef.current, {
-      width: 800,
-      height: 400,
+      width: 2000,
+      height: 1000,
     });
     setCanvas(newCanvas);
     return () => {
