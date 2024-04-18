@@ -1,0 +1,22 @@
+name: Build Test before merge
+
+on:
+  pull_request:
+  # main 브랜치에 PR 이벤트가 발생했을 때 trigger
+    branches:
+      - main 
+      # PR이 open, reopen 되었을 때 / main 브랜치의 내용과 동기화시켰을 때 trigger
+    types: [opened, reopened, synchronize] 
+
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm i
+      - name: Build
+
+        run: npm run build
