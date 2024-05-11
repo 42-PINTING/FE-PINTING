@@ -1,52 +1,14 @@
 'use client';
+import { useEffect, useState, useRef } from 'react';
 import { fabric } from 'fabric';
-import { useEffect, useRef, useState } from 'react';
-import handleMoveTool from './penPenning';
-import TriangleTool from './triangleTool';
-import { useRecoilState } from 'recoil';
-import { toolState } from '@/common/atoms/penAtoms';
 
-export default function WhiteBoard() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const Paint = () => {
+  const canvasRef = useRef(null);
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
-  const [activeTool, setActiveTool] = useRecoilState(toolState);
-  const [showTriangleTool, setShowTriangleTool] = useState(false);
   const [initialCanvasSize, setInitialCanvasSize] = useState({
     width: 1000,
     height: 500,
   });
-  useEffect(() => {
-    if (!canvasRef.current || !canvas) return;
-
-    switch (activeTool) {
-      case 'select':
-        handleSelectTool();
-        break;
-
-      case 'pen':
-        handlePenTool();
-        break;
-
-      case 'move':
-        handleMoveTool(canvas);
-        break;
-    }
-  }, [activeTool]);
-
-  const handleSelectTool = () => {
-    canvas.isDrawingMode = false;
-  };
-
-  const handlePenTool = () => {
-    canvas.freeDrawingBrush.width = 10;
-    canvas.isDrawingMode = true;
-  };
-
-  const handleTriangleTool = () => {
-    canvas.selection = false;
-    canvas.isDrawingMode = false;
-    setShowTriangleTool(!showTriangleTool);
-  };
 
   useEffect(() => {
     const newCanvas = new fabric.Canvas(canvasRef.current, {
@@ -67,8 +29,14 @@ export default function WhiteBoard() {
 
     const resizeCanvas = () => {
       // 브라우저 창 크기가 초기 설정 값보다 클 때만 새로운 크기를 적용합니다.
-      const newWidth = Math.max(window.innerWidth, initialCanvasSize.width);
-      const newHeight = Math.max(window.innerHeight, initialCanvasSize.height);
+      const newWidth = Math.max(
+        window.innerWidth * (2 / 3),
+        initialCanvasSize.width
+      );
+      const newHeight = Math.max(
+        window.innerHeight * (2 / 3),
+        initialCanvasSize.height
+      );
       newCanvas.setWidth(newWidth);
       newCanvas.setHeight(newHeight);
       newCanvas.renderAll();
@@ -82,30 +50,15 @@ export default function WhiteBoard() {
   }, []);
 
   return (
-    <>
-      <canvas style={{ border: '1px solid red' }} ref={canvasRef} />
-      {canvas && <TriangleTool canvas={canvas} />}
-      <button
-        style={{ width: '48px', height: '48px', border: '1px solid black' }}
-        onClick={() => setActiveTool('select')}
-        disabled={activeTool === 'select'} // 선택 도구가 활성화되어 있으면 비활성화
-      >
-        선택
-      </button>
-      <button
-        style={{ width: '48px', height: '48px', border: '1px solid black' }}
-        onClick={() => setActiveTool('pen')}
-        disabled={activeTool === 'pen'} // 펜 도구가 활성화되어 있으면 비활성화
-      >
-        펜
-      </button>
-      <button
-        style={{ width: '48px', height: '48px', border: '1px solid black' }}
-        onClick={() => setActiveTool('move')}
-        disabled={activeTool === 'move'} // 이동 도구가 활성화되어 있으면 비활성화
-      >
-        이동
-      </button>
-    </>
+    <div>
+      <canvas
+        ref={canvasRef}
+        width='800'
+        height='600'
+        style={{ border: '1px solid #ccc' }}
+      ></canvas>
+    </div>
   );
-}
+};
+
+export default Paint;
