@@ -14,8 +14,12 @@ export default function Home() {
         <h1 className={styles.homeTitle}>PINTING</h1>
         <Sign />
         <div className={styles.oauthBtnGroup}>
-          <button className={styles.oauthBtn}>Oauth google</button>
-          <button className={styles.oauthBtn}>Oauth kakao</button>
+          <button className={styles.oauthBtn} type='button'>
+            Oauth google
+          </button>
+          <button className={styles.oauthBtn} type='button'>
+            Oauth kakao
+          </button>
         </div>
       </div>
       <Image
