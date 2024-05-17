@@ -2,9 +2,14 @@
 import styles from '../_styles/Sign.module.scss';
 
 export default function Sign() {
-  // TODO: 로그인 api 호출 및 로그인 처리
+  const serverLoginEndpoint = process.env.NEXT_PUBLIC_SERVER_LOGIN_ENDPOINT;
+
   return (
-    <form action='' method='post' className={styles.signInForm}>
+    <form
+      action={serverLoginEndpoint}
+      method='post'
+      className={styles.signInForm}
+    >
       <label htmlFor='email' className={styles.emailLabel}>
         이메일
       </label>

@@ -22,6 +22,7 @@ export default function Home() {
           </button>
         </div>
       </div>
+      {/* 랜덤으로 이미지 변환 */}
       <Image
         className={styles.randomUserImage}
         src='/next.svg'
