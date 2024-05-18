@@ -1,4 +1,4 @@
-const setPenPanningTool = (canvas) => {
+const setPenPanningTool = (canvas: any) => {
   let isPanning = false;
   let lastPosX = 0;
   let lastPosY = 0;
@@ -6,7 +6,7 @@ const setPenPanningTool = (canvas) => {
   canvas.isDrawingMode = false;
   canvas.selection = false;
 
-  canvas.on('mouse:down', (opt) => {
+  canvas.on('mouse:down', (opt: any) => {
     const e = opt.e;
     isPanning = true;
     lastPosX = e.clientX;
@@ -14,7 +14,7 @@ const setPenPanningTool = (canvas) => {
     canvas.selection = false;
   });
 
-  canvas.on('mouse:move', (opt) => {
+  canvas.on('mouse:move', (opt: any) => {
     if (isPanning && opt.e) {
       const e = opt.e;
       const vpt = canvas.viewportTransform;
@@ -31,7 +31,7 @@ const setPenPanningTool = (canvas) => {
     canvas.selection = true;
   });
 };
-const disablePanningTool = (canvas) => {
+const disablePanningTool = (canvas: any) => {
   canvas.off('mouse:down');
   canvas.off('mouse:move');
   canvas.off('mouse:up');

@@ -1,6 +1,6 @@
 import { fabric } from 'fabric';
 
-export const setBasicPen = (canvas) => {
+export const setBasicPen = (canvas: any) => {
   const pencilBrush = new fabric.PencilBrush(canvas);
   pencilBrush.color = 'black';
   pencilBrush.width = 5;

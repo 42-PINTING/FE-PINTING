@@ -71,7 +71,7 @@ const whiteBoard = () => {
     }
   }, [tool, canvas]);
 
-  const handleToolChange = (selectedTool) => {
+  const handleToolChange = (selectedTool: any) => {
     setTool(selectedTool);
   };
 
