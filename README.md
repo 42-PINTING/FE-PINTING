@@ -1,7 +1,7 @@
 # frontend
 ## Stack
-axios
-recoil
+Axios
+Recoil
 MSW
 NEXT
 
