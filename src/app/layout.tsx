@@ -4,8 +4,8 @@ import RecoilRootProvider from '../common/utils/recoilProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
-  title: 'Pinting',
-  description: 'Pinting',
+  title: 'PINTING',
+  description: 'HELLO PINTING',
 };
 export default function RootLayout({
   children,
