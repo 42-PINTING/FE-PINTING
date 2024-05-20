@@ -14,6 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko'>
+      <meta charSet='UTF-8' />
       <body className={inter.className}>
         <RecoilRootProvider>{children}</RecoilRootProvider>
       </body>
