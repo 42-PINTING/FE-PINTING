@@ -1,13 +1,25 @@
 import { http, HttpResponse } from 'msw';
 
-/*--------------------login token------------------------------*/
-export const loginToken = [
-  http.post(`${process.env.NEXT_PUBLIC_SERVER_LOGIN_ENDPOINT}`, () => {
-    return HttpResponse.json({
-      token:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJnb29kIiwibGFzdE5hbWUiOiJqb2IifQ.fP9YiSYoHl25-zlAxrAlgFqBn1cz4IFVFFMtpKNRk0A',
-    });
-  }),
+export const checkLogin = [
+  http.get(
+    `${process.env.NEXT_PUBLIC_SERVER_LOGIN_ENDPOINT}`,
+    ({ request }) => {
+      const accessToken = process.env.NEXT_PUBLIC_TEST_JWT;
+
+      console.log('req:', request.headers.get('authorization'));
+      if (request.headers.get('authorization') !== accessToken) {
+        return new HttpResponse(null, {
+          status: 404,
+          statusText: 'Out Of Apples',
+        });
+      }
+
+      return new HttpResponse('is goood', {
+        status: 200,
+        statusText: 'is good',
+      });
+    }
+  ),
 ];
 
 /*--------------------random img------------------------------*/

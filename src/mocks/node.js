@@ -1,5 +1,5 @@
 // src/mocks/node.js
 import { setupServer } from 'msw/node';
-import { loginToken, randomeImage } from './home';
+import { checkLogin, randomeImage } from './Home.ts';
 
-export const server = setupServer(...loginToken, ...randomeImage);
+export const server = setupServer(...checkLogin, ...randomeImage);
