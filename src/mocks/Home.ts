@@ -2,11 +2,12 @@ import { http, HttpResponse } from 'msw';
 
 export const checkLogin = [
   http.get(
-    `${process.env.NEXT_PUBLIC_SERVER_LOGIN_ENDPOINT}`,
+    `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/login`,
     ({ request }) => {
       const accessToken = process.env.NEXT_PUBLIC_TEST_JWT;
 
       console.log('req:', request.headers.get('authorization'));
+
       if (request.headers.get('authorization') !== accessToken) {
         return new HttpResponse(null, {
           status: 404,
