@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { cookies } from 'next/headers';
+import { Cookies } from 'react-cookie';
 
 const baseURL = `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}`;
 
@@ -7,7 +7,7 @@ const instance = axios.create({ baseURL });
 
 instance.interceptors.request.use(
   function setConfig(config) {
-    const pintingAccessToken = cookies().get('pintingAccessToken')?.value;
+    const pintingAccessToken = new Cookies().get('pintingAccessToken')?.value;
 
     if (config.headers) {
       config.headers['Content-Type'] = 'application/json';
