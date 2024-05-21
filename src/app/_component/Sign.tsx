@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from '../_styles/Sign.module.scss';
 
 export default function Sign() {
-  const serverLoginEndpoint = process.env.NEXT_PUBLIC_SERVER_LOGIN_ENDPOINT;
+  const serverLoginEndpoint = process.env.NEXT_PUBLIC_SERVER_ENDPOINT;
   return (
     <form
       action={serverLoginEndpoint}

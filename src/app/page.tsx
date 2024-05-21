@@ -21,7 +21,7 @@ server.listen();
 //   let isError;
 
 //   await instance
-//     .get(`${process.env.NEXT_PUBLIC_SERVER_LOGIN_ENDPOINT}`)
+//     .get(`${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}`)
 //     .then((res) => {
 //       page = res.data;
 //       isError = false;
