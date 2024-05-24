@@ -1,0 +1,56 @@
+.sidebar {
+  margin: 0;
+  min-width: 20vw;
+  min-height: 100vh - 3vh;
+  overflow-y: auto;
+  background-color: white;
+  border-right: 1px solid #e7e7e7;
+  scrollbar-width: none;
+  flex-direction: column;
+}
+
+.sidebarLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sidebarTitle {
+  display: flex;
+  font-size: large;
+  justify-content: center;
+}
+
+.sidebarList {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebarPersonalItem {
+  display: flex;
+}
+
+.sidebarCoItem {
+  display: flex;
+}
+
+.footer {
+  display: flex;
+  bottom: 0;
+  position: absolute;
+  height: 1.5rem;
+  margin-top: auto;
+  flex-direction: column;
+  min-width: 20vw;
+  border-right: 1px solid #e7e7e7;
+}
+
+.copyright {
+  display: flex;
+  font-size: 0.7rem;
+  justify-content: center;
+}
