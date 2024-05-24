@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styles from '../_styles/Oauth.module.scss';
 
 // TODO: api로 Outh 구현

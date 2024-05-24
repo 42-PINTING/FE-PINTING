@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from '../_styles/Sign.module.scss';
 
-export default function Sign() {
+export default function SignForm() {
   const serverLoginEndpoint = process.env.NEXT_PUBLIC_SERVER_ENDPOINT;
   return (
     <form
