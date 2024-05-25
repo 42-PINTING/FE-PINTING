@@ -4,7 +4,7 @@ import penTool from '@/app/painting/_component/_utils/penToolIndex';
 interface SwitchToolProps {
   handleToolChange: (selectedTool: string) => void;
   tool: string;
-  canvas: fabric.Canvas | null; // canvas 추가
+  canvas: fabric.Canvas | null;
 }
 
 const SwitchTool: React.FC<SwitchToolProps> = ({
@@ -12,7 +12,6 @@ const SwitchTool: React.FC<SwitchToolProps> = ({
   tool,
   canvas,
 }) => {
-  // 선택된 도구에 따라 적절한 동작 수행
   useEffect(() => {
     if (!canvas) return;
 
@@ -26,12 +25,13 @@ const SwitchTool: React.FC<SwitchToolProps> = ({
         penTool.selection(canvas);
         break;
       case 'panning':
+        canvas.discardActiveObject();
         penTool.panning(canvas);
         break;
       default:
         break;
     }
-  }, [tool, canvas]); // canvas를 의존성 배열에 추가
+  }, [tool, canvas]);
 
   const handleButtonClick = (selectedTool: string) => {
     handleToolChange(selectedTool);
