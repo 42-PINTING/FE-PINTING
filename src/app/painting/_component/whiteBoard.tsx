@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { fabric } from 'fabric';
 import { useRecoilState } from 'recoil';
-import { toolState } from '@/common/atoms/penAtoms';
+import { toolState } from '@/app/painting/_atoms/penAtoms';
 import { setBasicPen } from '@/app/painting/_utils/penTool';
 import { setSelectionTool } from '@/app/painting/_utils/selectionTool';
 import {
