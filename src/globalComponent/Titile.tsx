@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import styles from '../globalStyles/Tilte.module.scss';
+
 const titleColor = [
   '#669CED',
   '#FF9141',
@@ -12,13 +15,13 @@ function basic() {
   const title = 'PINTING';
 
   return (
-    <>
+    <Link href='/' className={styles.TitleLink}>
       {title.split('').map((char, index) => (
         <span key={char + index} style={{ color: titleColor[index] }}>
           {char}
         </span>
       ))}
-    </>
+    </Link>
   );
 }
 
