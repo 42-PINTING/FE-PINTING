@@ -2,13 +2,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { fabric } from 'fabric';
 import { useRecoilState } from 'recoil';
-import { toolState } from '@/common/atoms/penAtoms';
-import { setBasicPen } from '@/app/painting/_utils/penTool';
-import { setSelectionTool } from '@/app/painting/_utils/selectionTool';
-import {
-  setPenPanningTool,
-  disablePanningTool,
-} from '@/app/painting/_utils/penPanningTool';
+import { toolState } from '@/app/painting/_atoms/penAtoms';
+import SwitchTool from '@/app/painting/_component/_utils/switchTool';
 
 const whiteBoard = () => {
   const canvasRef = useRef(null);
@@ -57,31 +52,17 @@ const whiteBoard = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!canvas) return;
-
-    if (tool === 'pen') {
-      disablePanningTool(canvas);
-      setBasicPen(canvas);
-    } else if (tool === 'selection') {
-      disablePanningTool(canvas);
-      setSelectionTool(canvas);
-    } else if (tool == 'panning') {
-      setPenPanningTool(canvas);
-    }
-  }, [tool, canvas]);
-
   const handleToolChange = (selectedTool: any) => {
     setTool(selectedTool);
   };
 
   return (
     <div>
-      <div>
-        <button onClick={() => handleToolChange('pen')}>펜</button>
-        <button onClick={() => handleToolChange('selection')}>선택</button>
-        <button onClick={() => handleToolChange('panning')}>이동</button>
-      </div>
+      <SwitchTool
+        handleToolChange={handleToolChange}
+        tool={tool}
+        canvas={canvas}
+      />
       <canvas
         ref={canvasRef}
         width='800'
