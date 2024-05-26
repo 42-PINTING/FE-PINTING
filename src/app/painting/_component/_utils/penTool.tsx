@@ -1,6 +1,6 @@
 import { fabric } from 'fabric';
 
-const basicPen = (canvas: any) => {
+const setBasicPen = (canvas: any) => {
   const pencilBrush = new fabric.PencilBrush(canvas);
   pencilBrush.color = 'black';
   pencilBrush.width = 5;
@@ -8,4 +8,4 @@ const basicPen = (canvas: any) => {
   canvas.isDrawingMode = true;
 };
 
-export default basicPen;
+export default setBasicPen;

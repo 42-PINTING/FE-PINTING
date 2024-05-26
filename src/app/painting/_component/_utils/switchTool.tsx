@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import penTool from '@/app/painting/_component/_utils/penToolIndex';
+import { Tool } from '@/app/painting/_component/_utils/toolIndex';
 
 interface SwitchToolProps {
   handleToolChange: (selectedTool: string) => void;
@@ -17,16 +17,16 @@ const SwitchTool: React.FC<SwitchToolProps> = ({
 
     switch (tool) {
       case 'pen':
-        penTool.disablePanning(canvas);
-        penTool.basicPen(canvas);
+        Tool.disablePanning(canvas);
+        Tool.pen.basic(canvas);
         break;
       case 'selection':
-        penTool.disablePanning(canvas);
-        penTool.selection(canvas);
+        Tool.disablePanning(canvas);
+        Tool.selection(canvas);
         break;
       case 'panning':
         canvas.discardActiveObject();
-        penTool.panning(canvas);
+        Tool.panning(canvas);
         break;
       default:
         break;
