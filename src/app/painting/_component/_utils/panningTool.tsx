@@ -1,4 +1,4 @@
-const setPenPanningTool = (canvas: any) => {
+export const panningTool = (canvas: any) => {
   let isPanning = false;
   let lastPosX = 0;
   let lastPosY = 0;
@@ -31,7 +31,8 @@ const setPenPanningTool = (canvas: any) => {
     canvas.selection = true;
   });
 };
-const disablePanningTool = (canvas: any) => {
+
+export const disablePanningTool = (canvas: any) => {
   canvas.off('mouse:down');
   canvas.off('mouse:move');
   canvas.off('mouse:up');
@@ -39,5 +40,3 @@ const disablePanningTool = (canvas: any) => {
   canvas.isDrawingMode = false;
   canvas.selection = true;
 };
-
-export { setPenPanningTool, disablePanningTool };
