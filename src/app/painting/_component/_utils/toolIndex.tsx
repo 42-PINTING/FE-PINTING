@@ -1,4 +1,4 @@
-import setBasicPen from '@/app/painting/_component/_utils/setBasicPenTool';
+import { basicPen } from '@/app/painting/_component/_utils/penTool';
 import {
   panningTool,
   disablePanningTool,
@@ -6,7 +6,7 @@ import {
 import selectionTool from '@/app/painting/_component/_utils/selectionTool';
 
 export const Pen = {
-  basic: setBasicPen,
+  basic: basicPen,
 };
 
 export const Tool = {
