@@ -1,17 +1,20 @@
+$sidebarWidth: 17%;
+
+.line {
+  border-right: 1px solid #c3ff0000;
+  margin: 20px 0; /* 위아래 마진 */
+  width: 100%;
+}
+
 .sidebar {
   margin: 0;
-  min-width: 20vw;
-  min-height: 100vh - 3vh;
+  min-width: $sidebarWidth;
+  min-height: 100vh;
   overflow-y: auto;
   background-color: white;
   border-right: 1px solid #e7e7e7;
   scrollbar-width: none;
   flex-direction: column;
-}
-
-.sidebarLink {
-  color: inherit;
-  text-decoration: none;
 }
 
 .sidebarTitle {
@@ -30,27 +33,65 @@
   align-items: center;
 }
 
-.sidebarPersonalItem {
+.sidebarItem {
   display: flex;
+  margin: 1rem;
 }
 
-.sidebarCoItem {
+.sidebarLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.itemIcon {
   display: flex;
+  justify-content: center;
+}
+
+.itemText {
+  font-size: medium;
 }
 
 .footer {
-  display: flex;
-  bottom: 0;
   position: absolute;
-  height: 1.5rem;
-  margin-top: auto;
+  bottom: 0.5rem;
+  height: auto;
   flex-direction: column;
-  min-width: 20vw;
-  border-right: 1px solid #e7e7e7;
+  min-width: $sidebarWidth;
+}
+
+.footerWrapper {
+  display: flex;
+  justify-content: center;
+  color: inherit;
+  text-decoration: none;
 }
 
 .copyright {
   display: flex;
   font-size: 0.7rem;
   justify-content: center;
+}
+
+@media (max-width: 620px) {
+  .sidebar {
+    margin: 0;
+    min-width: $sidebarWidth;
+    min-height: 100vh;
+    overflow-y: auto;
+    background-color: white;
+    border-right: 1px solid #e7e7e7;
+    scrollbar-width: none;
+    flex-direction: column;
+  }
+
+  .sidebarTitle {
+    display: flex;
+    font-size: small;
+    justify-content: center;
+  }
+
+  .itemText {
+    font-size: small;
+  }
 }
