@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { toolState } from '@/app/painting/_atoms/penAtoms';
 import SwitchTool from '@/app/painting/_component/_utils/switchTool';
 
-const whiteBoard = () => {
+const WhiteBoard = () => {
   const canvasRef = useRef(null);
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
   const [initialCanvasSize, setInitialCanvasSize] = useState({
@@ -73,4 +73,4 @@ const whiteBoard = () => {
   );
 };
 
-export default whiteBoard;
+export default WhiteBoard;
