@@ -16,11 +16,13 @@ function basic() {
 
   return (
     <Link href='/' className={styles.TitleLink}>
-      {title.split('').map((char, index) => (
-        <span key={char + index} style={{ color: titleColor[index] }}>
-          {char}
-        </span>
-      ))}
+      <h1>
+        {title.split('').map((char, index) => (
+          <span key={char + index} style={{ color: titleColor[index] }}>
+            {char}
+          </span>
+        ))}
+      </h1>
     </Link>
   );
 }
