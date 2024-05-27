@@ -1,4 +1,4 @@
-$sidebarWidth: 17%;
+$Width: 12%;
 
 .line {
   border-right: 1px solid #c3ff0000;
@@ -6,9 +6,9 @@ $sidebarWidth: 17%;
   width: 100%;
 }
 
-.sidebar {
+.nav {
   margin: 0;
-  min-width: $sidebarWidth;
+  min-width: $Width;
   min-height: 100vh;
   overflow-y: auto;
   background-color: white;
@@ -17,13 +17,13 @@ $sidebarWidth: 17%;
   flex-direction: column;
 }
 
-.sidebarTitle {
+.title {
   display: flex;
   font-size: large;
   justify-content: center;
 }
 
-.sidebarList {
+.list {
   margin: 0;
   border: 0;
   padding: 0;
@@ -33,12 +33,12 @@ $sidebarWidth: 17%;
   align-items: center;
 }
 
-.sidebarItem {
+.item {
   display: flex;
   margin: 1rem;
 }
 
-.sidebarLink {
+.link {
   color: inherit;
   text-decoration: none;
 }
@@ -52,12 +52,33 @@ $sidebarWidth: 17%;
   font-size: medium;
 }
 
+.attendanceBox {
+  display: flex;
+  background-color: rgba(173, 173, 173, 0.266);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.attendanceBoxTitle {
+  display: flex;
+  background-color: red;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+}
+
 .footer {
   position: absolute;
   bottom: 0.5rem;
   height: auto;
   flex-direction: column;
-  min-width: $sidebarWidth;
+  min-width: $Width;
 }
 
 .footerWrapper {
@@ -74,9 +95,10 @@ $sidebarWidth: 17%;
 }
 
 @media (max-width: 620px) {
-  .sidebar {
+  $Width: 17%;
+  .nav {
     margin: 0;
-    min-width: $sidebarWidth;
+    min-width: $Width;
     min-height: 100vh;
     overflow-y: auto;
     background-color: white;
@@ -85,7 +107,7 @@ $sidebarWidth: 17%;
     flex-direction: column;
   }
 
-  .sidebarTitle {
+  .title {
     display: flex;
     font-size: small;
     justify-content: center;
