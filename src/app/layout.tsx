@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Styles from './_styles/Layout.module.scss';
 import Sidebar from './_component/Sidebar';
-import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,10 +18,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko'>
-      <head>
-        <Script src='/navbar.js' />
-        <link rel='icon' href='/favicon.ico' />
-      </head>
       <body className={inter.className} style={{ margin: 0, border: 0 }}>
         <RecoilRootProvider>
           <div className={Styles.layout}>
