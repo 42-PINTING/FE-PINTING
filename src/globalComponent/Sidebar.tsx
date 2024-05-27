@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import styles from '../_styles/Sidebar.module.scss';
-import Title from '../../globalComponent/Titile';
+import styles from '../globalStyles/Sidebar.module.scss';
+import Title from './Titile';
 import { FaGithub, FaHeart, FaPen, FaUser, FaSlideshare } from 'react-icons/fa';
 import { BsEnvelopePaperHeart } from 'react-icons/bs';
 import { LuTreeDeciduous } from 'react-icons/lu';
@@ -30,22 +30,29 @@ const navPrivateItems = [
   { href: '/user', text: '유저', icon: <FaUser color='gray' /> },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <nav className={styles.nav}>
-      <h2 className={styles.title}>
-        <Title.basic />
-      </h2>
-      <ul className={styles.list}>
-        <PersonalItems />
-        <hr className={styles.line} />
-        <CoItems />
-        <hr className={styles.line} />
-        <PrivateItems />
-        <AttendanceBox />
-      </ul>
-      <FooterItems />
-    </nav>
+    <div style={{ display: 'flex' }}>
+      <nav className={styles.nav} id='sidebar'>
+        <h2 className={styles.title}>
+          <Title.basic />
+        </h2>
+        <ul className={styles.list}>
+          <PersonalItems />
+          <hr className={styles.line} />
+          <CoItems />
+          <hr className={styles.line} />
+          <PrivateItems />
+          <AttendanceBox />
+        </ul>
+        <FooterItems />
+      </nav>
+      {children}
+    </div>
   );
 }
 

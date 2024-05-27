@@ -2,13 +2,14 @@ $Width: 12%;
 
 .line {
   border-right: 1px solid #c3ff0000;
-  margin: 20px 0; /* 위아래 마진 */
+  margin: 20px 0;
   width: 100%;
 }
 
 .nav {
+  display: flex;
   margin: 0;
-  min-width: $Width;
+  max-width: $Width;
   min-height: 100vh;
   overflow-y: auto;
   background-color: white;

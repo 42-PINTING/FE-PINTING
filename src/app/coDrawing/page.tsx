@@ -1,3 +1,5 @@
+import Sidebar from '@/globalComponent/Sidebar';
+
 export default function coDrawing() {
-  return <div>coDrawing</div>;
+  return <Sidebar>coDrawing</Sidebar>;
 }

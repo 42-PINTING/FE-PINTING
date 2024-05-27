@@ -1,8 +1,6 @@
 import RecoilRootProvider from '@/utils/recoilProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Styles from './_styles/Layout.module.scss';
-import Sidebar from './_component/Sidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,12 +17,7 @@ export default function RootLayout({
   return (
     <html lang='ko'>
       <body className={inter.className} style={{ margin: 0, border: 0 }}>
-        <RecoilRootProvider>
-          <div className={Styles.layout}>
-            <Sidebar />
-            {children}
-          </div>
-        </RecoilRootProvider>
+        <RecoilRootProvider>{children}</RecoilRootProvider>
       </body>
     </html>
   );

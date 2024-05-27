@@ -1,3 +1,5 @@
+import Sidebar from '@/globalComponent/Sidebar';
+
 export default function User() {
-  return <div>user</div>;
+  return <Sidebar>user</Sidebar>;
 }
