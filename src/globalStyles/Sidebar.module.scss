@@ -9,6 +9,8 @@ $Width: 12%;
 .nav {
   display: flex;
   margin: 0;
+  overflow: hidden;
+  min-width: $Width;
   max-width: $Width;
   min-height: 100vh;
   overflow-y: auto;
@@ -96,7 +98,7 @@ $Width: 12%;
 }
 
 @media (max-width: 620px) {
-  $Width: 17%;
+  $Width: 30%;
   .nav {
     margin: 0;
     min-width: $Width;
@@ -110,7 +112,7 @@ $Width: 12%;
 
   .title {
     display: flex;
-    font-size: small;
+    font-size: x-small;
     justify-content: center;
   }
 
