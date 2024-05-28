@@ -1,2 +1,2 @@
 env_update:
-	git submodule update --init --recursive
+	git submodule update --init --recursive --remote --merge
