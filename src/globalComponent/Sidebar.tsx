@@ -9,7 +9,14 @@ import { LuTreeDeciduous } from 'react-icons/lu';
  * 그리기 == 개인 그림
  * 그림편지 == 게시판
  */
-const navPersonalItems = [
+
+type NavItemProps = {
+  href: string;
+  text: string;
+  icon: React.ReactNode;
+};
+
+const navPersonalItems: NavItemProps[] = [
   { href: '/painting', text: '그리기', icon: <FaPen /> },
   {
     href: '/',
@@ -42,11 +49,11 @@ export default function Sidebar({
           <Title.basic />
         </h2>
         <ul className={styles.list}>
-          <PersonalItems />
+          <NavItems list={navPersonalItems} />
           <hr className={styles.line} />
-          <CoItems />
+          <NavItems list={navCoItems} />
           <hr className={styles.line} />
-          <PrivateItems />
+          <NavItems list={navPrivateItems} />
           <AttendanceBox />
         </ul>
         <FooterItems />
@@ -56,31 +63,9 @@ export default function Sidebar({
   );
 }
 
-function PersonalItems() {
-  return navPersonalItems.map((item) => (
+function NavItems({ list }: { list: NavItemProps[] }) {
+  return list.map((item) => (
     <li key={item.href} className={styles.item} id={`${item.text}`}>
-      <Link href={item.href} className={styles.link}>
-        <div className={styles.itemIcon}>{item.icon}</div>
-        <div className={styles.itemText}>{item.text}</div>
-      </Link>
-    </li>
-  ));
-}
-
-function CoItems() {
-  return navCoItems.map((item) => (
-    <li key={item.href} className={styles.item}>
-      <Link href={item.href} className={styles.link}>
-        <div className={styles.itemIcon}>{item.icon}</div>
-        <div className={styles.itemText}>{item.text}</div>
-      </Link>
-    </li>
-  ));
-}
-
-function PrivateItems() {
-  return navPrivateItems.map((item) => (
-    <li key={item.href} className={styles.item}>
       <Link href={item.href} className={styles.link}>
         <div className={styles.itemIcon}>{item.icon}</div>
         <div className={styles.itemText}>{item.text}</div>
