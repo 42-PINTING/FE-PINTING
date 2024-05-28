@@ -83,3 +83,18 @@ export const rectangleTool = (canvas: fabric.Canvas) => {
       })
   );
 };
+
+export const circleTool = (canvas: fabric.Canvas) => {
+  return createShapeTool(
+    canvas,
+    (x, y) =>
+      new fabric.Circle({
+        left: x,
+        top: y,
+        radius: 0,
+        fill: 'white',
+        stroke: 'black',
+        strokeWidth: 2,
+      })
+  );
+};
