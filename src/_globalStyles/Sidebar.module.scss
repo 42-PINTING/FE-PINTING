@@ -97,6 +97,10 @@ $Width: 12%;
   justify-content: center;
 }
 
+.children {
+  width: 100% - $Width;
+}
+
 @media (max-width: 620px) {
   $Width: 30%;
   .nav {
@@ -118,5 +122,9 @@ $Width: 12%;
 
   .itemText {
     font-size: small;
+  }
+
+  .children {
+    width: 100% - $Width;
   }
 }
