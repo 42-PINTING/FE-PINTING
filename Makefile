@@ -1,7 +1,7 @@
 FE = ./FE-PINTING
 REPO_URL = git@github.com:42-PINTING/env
 
-all: pull dev
+all: pull install dev
 
 pull:
 	@if [ -d "env" ]; then \
@@ -11,6 +11,9 @@ pull:
 		echo "env 파일이 없어요.\ngit clone을 실행합니다."; \
 		git clone $(REPO_URL); \
 	fi
+
+install:
+	npm install
 
 dev:
 	npm run dev
