@@ -38,6 +38,10 @@ const SwitchTool: React.FC<SwitchToolProps> = ({
         Tool.disablePanning(canvas);
         removeListeners = Tool.shape.rectangle(canvas);
         break;
+      case 'circle':
+        Tool.disablePanning(canvas);
+        removeListeners = Tool.shape.circle(canvas);
+        break;
       default:
         break;
     }
@@ -60,6 +64,7 @@ const SwitchTool: React.FC<SwitchToolProps> = ({
       <button onClick={() => handleButtonClick('panning')}>이동</button>
       <button onClick={() => handleButtonClick('triangle')}>삼각형</button>
       <button onClick={() => handleButtonClick('rectangle')}>사각형</button>
+      <button onClick={() => handleButtonClick('circle')}>원</button>
     </div>
   );
 };
