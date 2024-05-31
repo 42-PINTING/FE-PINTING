@@ -7,6 +7,7 @@ import selectionTool from '@/app/painting/_component/_utils/selectionTool';
 import {
   triangleTool,
   rectangleTool,
+  circleTool,
 } from '@/app/painting/_component/_utils/shapeTool';
 
 export const Pen = {
@@ -16,6 +17,7 @@ export const Pen = {
 export const Shapes = {
   triangle: triangleTool,
   rectangle: rectangleTool,
+  circle: circleTool,
 };
 
 export const Tool = {
