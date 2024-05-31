@@ -5,7 +5,7 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['fabric'],
   },
-  webpack: (config, { webpack }) => {
+  webpack: (config, { isServer, webpack }) => {
     config.externals.push({ canvas: 'commonjs canvas' });
     return config;
   },
