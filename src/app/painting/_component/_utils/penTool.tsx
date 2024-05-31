@@ -1,3 +1,4 @@
+'use client';
 import { fabric } from 'fabric';
 
 export const basicPen = (canvas: any) => {

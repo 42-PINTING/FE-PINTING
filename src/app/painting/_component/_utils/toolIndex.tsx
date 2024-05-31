@@ -1,3 +1,4 @@
+'use client';
 import { basicPen } from '@/app/painting/_component/_utils/penTool';
 import {
   panningTool,

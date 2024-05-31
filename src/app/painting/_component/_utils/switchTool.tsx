@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect } from 'react';
 import { Tool } from '@/app/painting/_component/_utils/toolIndex';
 
