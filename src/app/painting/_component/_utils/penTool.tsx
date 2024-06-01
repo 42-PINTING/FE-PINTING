@@ -1,7 +1,7 @@
 'use client';
 import { fabric } from 'fabric';
 
-export const basicPen = (canvas: any) => {
+export const basicPen = (canvas: fabric.Canvas) => {
   const pencilBrush = new fabric.PencilBrush(canvas);
   pencilBrush.color = 'black';
   pencilBrush.width = 5;
