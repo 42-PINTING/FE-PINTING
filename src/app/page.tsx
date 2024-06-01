@@ -1,5 +1,5 @@
 import { server } from '../mocks/node.js';
-import Sidebar from '@/globalComponent/Sidebar';
+import Sidebar from '@/_globalComponents/Sidebar';
 
 server.listen();
 

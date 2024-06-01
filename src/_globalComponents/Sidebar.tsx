@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '../globalStyles/Sidebar.module.scss';
+import styles from '../_globalStyles/Sidebar.module.scss';
 import Title from './Titile';
 import { FaGithub, FaHeart, FaPen, FaUser, FaSlideshare } from 'react-icons/fa';
 import { BsEnvelopePaperHeart } from 'react-icons/bs';
@@ -34,9 +34,10 @@ const navCoItems = [
 ];
 
 const navPrivateItems = [
-  { href: '/user', text: '유저', icon: <FaUser color='gray' /> },
+  { href: '/profile', text: '프로필', icon: <FaUser color='gray' /> },
 ];
 
+//TODO: 탭을 선택시 버튼 색상 변경
 export default function Sidebar({
   children,
 }: Readonly<{
@@ -58,7 +59,7 @@ export default function Sidebar({
         </ul>
         <FooterItems />
       </nav>
-      {children}
+      <div className={styles.children}>{children}</div>
     </div>
   );
 }
