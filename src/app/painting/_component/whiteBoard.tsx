@@ -3,23 +3,35 @@ import { useEffect, useState, useRef } from 'react';
 import { fabric } from 'fabric';
 import { useRecoilState } from 'recoil';
 import { toolState } from '@/app/painting/_atoms/penAtoms';
-import SwitchTool from '@/app/painting/_component/_utils/switchTool';
+import { canvasHistoryState, canvasIndexState } from '../_atoms/canvasAtoms';
+import SwitchTool from '@/app/painting/_component/_utils/SwitchTool';
+import UndoRedoTool from './_utils/unDoReDoTool';
 
 const WhiteBoard = () => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
-  const [initialCanvasSize, setInitialCanvasSize] = useState({
+  const [initialCanvasSize] = useState({
     width: 1000,
     height: 500,
   });
   const [tool, setTool] = useRecoilState(toolState);
+  const [history, setHistory] = useRecoilState(canvasHistoryState);
+  const [currentIndex, setCurrentIndex] = useRecoilState(canvasIndexState);
 
+  // Canvas 초기화 useEffect
   useEffect(() => {
+    if (!canvasRef.current) return;
+
     const newCanvas = new fabric.Canvas(canvasRef.current, {
       width: initialCanvasSize.width,
       height: initialCanvasSize.height,
     });
     setCanvas(newCanvas);
+
+    const initialState = newCanvas.toJSON();
+    setHistory([initialState.objects as fabric.Object[]]);
+    setCurrentIndex(0);
+
     newCanvas.on('mouse:wheel', function (opt) {
       const delta = opt.e.deltaY;
       let zoom = newCanvas.getZoom();
@@ -52,6 +64,45 @@ const WhiteBoard = () => {
     };
   }, []);
 
+  // 히스토리 관리 useEffect
+  useEffect(() => {
+    if (!canvas) return;
+
+    const saveState = () => {
+      const json = canvas.toJSON();
+      const newHistory = [
+        ...history.slice(0, currentIndex + 1),
+        JSON.stringify(json),
+      ];
+      if (newHistory.length > 10) {
+        newHistory.shift();
+      }
+      setHistory(newHistory as fabric.Object[][]);
+      setCurrentIndex(newHistory.length - 1);
+    };
+    canvas.on('object:added', saveState);
+    canvas.on('object:modified', saveState);
+    canvas.on('object:removed', saveState);
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Backspace' || event.key === 'Delete') {
+        if (canvas.getActiveObject()) {
+          canvas.remove(canvas.getActiveObject() as fabric.Object);
+          saveState();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      canvas.off('object:added', saveState);
+      canvas.off('object:modified', saveState);
+      canvas.off('object:removed', saveState);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [canvas, history, currentIndex, setHistory, setCurrentIndex]);
+
   const handleToolChange = (selectedTool: string) => {
     setTool(selectedTool);
   };
@@ -63,6 +114,7 @@ const WhiteBoard = () => {
         tool={tool}
         canvas={canvas}
       />
+      <UndoRedoTool canvas={canvas} />
       <canvas
         ref={canvasRef}
         width='800'
