@@ -6,34 +6,28 @@ interface Props {
   children: ReactNode;
 }
 
+/*
+  mswProvider는 개발환경에서만 사용되는 컴포넌트
+  lazy import를 사용하지 못한 이유는 lazy import가 server에서 사용되기 때문
+  따라서 동적 import로 msw를 사용.
+*/
 export default function MswProvider({ children }: Props) {
   const [isInit, setIsInit] = useState<boolean>(false);
 
   const configMsw = async () => {
-    // next dev를 이용하여 개발 환경에서 동작했을 때만 msw 동작
-    const { worker } = await import('@/../public/api/browser');
+    const { worker } = await import('@/mocks/api/browser');
     await worker.start();
+
+    setIsInit(true);
   };
 
-  // msw 초기화가 수행되지 않은 경우 msw 초기화 설정 수행
-  // 해당 설정을 하지 않고 바로 msw가 사용되는 페이지에 접근할 경우 msw 설정이 되기 전 API가 호출되어 mocking이 올바르게 수행되지 않음
   useEffect(() => {
-    if (!isInit) {
-      (async () => {
-        await configMsw();
-        setIsInit(true);
-      })();
-    }
-  }, [isInit]);
+    if (process.env.NODE_ENV === 'development' && !isInit) configMsw();
+  }, []);
 
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== 'development' || isInit) {
     return <>{children}</>;
   }
 
-  // 해당 설정을 하지 않고 바로 msw가 사용되는 페이지에 접근할 경우 msw 설정이 되기 전 API가 호출되어 mocking이 올바르게 수행되지 않음
-  if (!isInit) {
-    return <>아직 msw 로딩중</>;
-  }
-
-  return <>{children}</>;
+  return <>아직 msw 로딩중</>;
 }

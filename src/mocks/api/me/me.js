@@ -1,14 +1,5 @@
 import { http, HttpResponse } from 'msw';
 
-// 정상적으로 보내는 지 확인하기
-/*
-  profile
-  email: string | undefined;
-  nickname: string | undefined;
-  image: string | undefined;
-  permission: 'admin' | 'manager' | 'user' | 'block' | undefined;
-  blockList: BlockEmail[];
-*/
 export const profile = [
   http.post(`${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/me`, ({ request }) => {
     const profile = {

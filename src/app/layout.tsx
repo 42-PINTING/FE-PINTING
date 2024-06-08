@@ -1,6 +1,8 @@
-import RecoilRootProvider from '@/utils/recoilProvider';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
+import RecoilRootProvider from '@/utils/recoilProvider';
+import SetProfile from '@/_globalComponents/SetProfile';
+import MswProvider from '@/utils/mswProvider';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
@@ -19,7 +21,11 @@ export default function RootLayout({
   return (
     <html lang='ko'>
       <body className={inter.className} style={{ margin: 0, border: 0 }}>
-        <RecoilRootProvider>{children}</RecoilRootProvider>
+        <RecoilRootProvider>
+          <MswProvider>
+            <SetProfile>{children}</SetProfile>
+          </MswProvider>
+        </RecoilRootProvider>
       </body>
     </html>
   );
