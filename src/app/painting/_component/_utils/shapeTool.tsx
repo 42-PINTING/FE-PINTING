@@ -53,7 +53,7 @@ const createShapeTool = (
   };
 };
 
-export const triangleTool = (canvas: fabric.Canvas) => {
+export const TriangleTool = (canvas: fabric.Canvas) => {
   return createShapeTool(
     canvas,
     (x, y) =>
@@ -69,7 +69,7 @@ export const triangleTool = (canvas: fabric.Canvas) => {
   );
 };
 
-export const rectangleTool = (canvas: fabric.Canvas) => {
+export const RectangleTool = (canvas: fabric.Canvas) => {
   return createShapeTool(
     canvas,
     (x, y) =>
@@ -85,7 +85,7 @@ export const rectangleTool = (canvas: fabric.Canvas) => {
   );
 };
 
-export const circleTool = (canvas: fabric.Canvas) => {
+export const CircleTool = (canvas: fabric.Canvas) => {
   return createShapeTool(
     canvas,
     (x, y) =>

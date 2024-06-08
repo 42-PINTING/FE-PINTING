@@ -1,4 +1,4 @@
-export const panningTool = (canvas: fabric.Canvas) => {
+export const PanningTool = (canvas: fabric.Canvas) => {
   let isPanning = false;
   let lastPosX = 0;
   let lastPosY = 0;
@@ -34,7 +34,7 @@ export const panningTool = (canvas: fabric.Canvas) => {
   });
 };
 
-export const disablePanningTool = (canvas: fabric.Canvas) => {
+export const DisablePanningTool = (canvas: fabric.Canvas) => {
   canvas.off('mouse:down');
   canvas.off('mouse:move');
   canvas.off('mouse:up');
