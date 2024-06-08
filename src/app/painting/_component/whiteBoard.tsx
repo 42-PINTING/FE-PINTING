@@ -4,7 +4,7 @@ import { fabric } from 'fabric';
 import { useRecoilState } from 'recoil';
 import { toolState } from '@/app/painting/_atoms/penAtoms';
 import { canvasHistoryState, canvasIndexState } from '../_atoms/canvasAtoms';
-import SwitchTool from '@/app/painting/_component/_utils/SwitchTool';
+import SwitchTool from './_utils/SwitchTool';
 import UndoRedoTool from './_utils/unDoReDoTool';
 
 const WhiteBoard = () => {
