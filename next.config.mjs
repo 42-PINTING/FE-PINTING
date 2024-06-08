@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    serverComponentsExternalPackages: ['fabric'],
+  },
   webpack: (config, { isServer }) => {
     // server일시 browser를 제외 시킨다
     if (isServer) {
@@ -12,6 +16,7 @@ const nextConfig = {
         config.resolve.alias.push({ name: 'msw/node', alias: false });
       else config.resolve.alias['msw/node'] = false;
     }
+    config.externals.push({ canvas: 'commonjs canvas' });
     return config;
   },
 };

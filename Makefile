@@ -16,6 +16,8 @@ install:
 	npm install
 
 dev:
+	make pull
+	npm install
 	npm run dev
 
-.PHONY: pull
+.PHONY: pull all install dev
