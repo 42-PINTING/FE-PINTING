@@ -5,11 +5,7 @@ import {
   DisablePanningTool,
 } from '@/app/painting/_component/_utils/PanningTool';
 import selectionTool from '@/app/painting/_component/_utils/SelectionTool';
-import {
-  TriangleTool,
-  RectangleTool,
-  CircleTool,
-} from '@/app/painting/_component/_utils/ShapeTool';
+import { TriangleTool, RectangleTool, CircleTool } from '../_utils/ShapeTool';
 
 export const Pen = {
   basic: BasicPen,
