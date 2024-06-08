@@ -15,7 +15,7 @@ export default function MswProvider({ children }: Props) {
   const [isInit, setIsInit] = useState<boolean>(false);
 
   const configMsw = async () => {
-    const { worker } = await import('@/mocks/api/browser');
+    const { worker } = await import('@/mocks/browser');
     await worker.start();
 
     setIsInit(true);
