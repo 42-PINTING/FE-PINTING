@@ -1,10 +1,7 @@
 import Sidebar from '@/_globalComponents/Sidebar';
-import SignInButton from '@/_globalComponents/SignInButton';
+import SignButton from '@/_globalComponents/button/SignButton';
 import styles from './_styles/board.module.scss';
-import { server } from '../mocks/node.js';
 import { FaSearch } from 'react-icons/fa';
-
-server.listen();
 
 //TODO: selectButtonItems를 서버에서 받아오도록 수정
 const selectButtonItems = [
@@ -13,11 +10,11 @@ const selectButtonItems = [
   { value: '3', text: 'Three' },
 ];
 
-export default function main() {
+export default function app() {
   return (
     <Sidebar>
       <div className={styles.accountMenu}>
-        <SignInButton />
+        <SignButton />
       </div>
       <div className={styles.header}>
         <div className={styles.headerWrapper}>
@@ -40,7 +37,7 @@ export default function main() {
 function SelectButton() {
   return (
     <select aria-label='Select Button' className={styles.selectButton}>
-      <option selected>그림 종류</option>
+      <option>그림종류</option>
       {selectButtonItems.map((item) => (
         <option key={item.value} value={item.value}>
           {item.text}
