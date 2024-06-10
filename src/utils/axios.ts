@@ -2,12 +2,21 @@ import axios, { AxiosError } from 'axios';
 import { cookies } from 'next/headers.js';
 
 const baseURL = `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}`;
-
 const instance = axios.create({ baseURL });
 
+// TODO : 추후 server axios instance와 server instance를 분리해야함
 instance.interceptors.request.use(
   function setConfig(config) {
-    const pintingAccessToken = cookies().get('pintingAccessToken')?.value;
+    let pintingAccessToken = '';
+
+    if (typeof window === 'undefined') {
+      pintingAccessToken = cookies().get('pintingAccessToken')?.value ?? '';
+    } else {
+      pintingAccessToken = document.cookie.replace(
+        /(?:(?:^|.*;\s*)pintingAccessToken\s*\=\s*([^;]*).*$)|^.*$/,
+        '$1'
+      );
+    }
 
     if (config.headers) {
       config.headers['Content-Type'] = 'application/json';
