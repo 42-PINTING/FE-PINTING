@@ -11,8 +11,7 @@ export const metadata: Metadata = {
   description: 'HELLO PINTING',
 };
 
-// TODO: login 시 atom에 프로필 저장
-// TODO: 자동 로그인 기능
+// dev 모드에서는 토큰에 [key : pintingAccessToken, value : 아무값] 을 넣으면 로그인 상태로 간주
 export default function RootLayout({
   children,
 }: Readonly<{
