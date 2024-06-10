@@ -14,12 +14,12 @@ const SetProfile: FC<useSetProfileProps> = ({ children }) => {
 
   const getProfile = async () => {
     await instance
-      .post(`${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/me`)
+      .post(`/me`)
       .then((res) => {
         setProfile(res.data);
       })
       .catch((err) => {
-        // TODO: 에러 처리
+        // TODO: permission 에러 처리
         console.log(err);
       });
   };
