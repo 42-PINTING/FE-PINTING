@@ -2,6 +2,17 @@ import { http, HttpResponse } from 'msw';
 
 export const profile = [
   http.post(`${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/me`, ({ request }) => {
+    const token = request.headers.get('Authorization');
+
+    if (token === '') {
+      return new HttpResponse(null, {
+        status: 401,
+        statusText: 'token is not provided',
+      });
+    }
+
+    console.log('mock token:', token);
+
     const profile = {
       email: 'juha@student.42seoul.kr',
       nickname: 'juha',
@@ -16,9 +27,6 @@ export const profile = [
         },
       ],
     };
-
-    console.log('mock accessToken', request.headers.get('authorization'));
-    console.log('mock email:', request.body);
 
     return new HttpResponse(JSON.stringify(profile), { status: 200 });
   }),
