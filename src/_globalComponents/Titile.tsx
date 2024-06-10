@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '../_globalStyles/Tilte.module.scss';
+import styles from '@/_globalStyles/tilte.module.scss';
 
 const titleColor = [
   '#669CED',
@@ -11,7 +11,7 @@ const titleColor = [
   '#9EA1F2',
 ];
 
-function basic() {
+const basic = () => {
   const title = 'PINTING';
 
   return (
@@ -25,7 +25,7 @@ function basic() {
       </h1>
     </Link>
   );
-}
+};
 
 const Title = {
   basic,
