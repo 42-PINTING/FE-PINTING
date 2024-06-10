@@ -1,7 +1,10 @@
+'use client';
+
 import Sidebar from '@/_globalComponents/Sidebar';
-import SignButton from '@/_globalComponents/button/SignButton';
+import { SignButton, SelectButton } from '@/_globalComponents/Button';
 import styles from './_styles/board.module.scss';
 import { FaSearch } from 'react-icons/fa';
+import PostList from './_components/posts';
 
 //TODO: selectButtonItems를 서버에서 받아오도록 수정
 const selectButtonItems = [
@@ -10,7 +13,7 @@ const selectButtonItems = [
   { value: '3', text: 'Three' },
 ];
 
-export default function app() {
+const Board = () => {
   return (
     <Sidebar>
       <div className={styles.accountMenu}>
@@ -28,21 +31,14 @@ export default function app() {
             {/* <input value={'검색'}></input> */}
           </div>
         </div>
-        <SelectButton />
+        <SelectButton
+          defaultValue={'그림종류'}
+          selectButtonItems={selectButtonItems}
+        />
       </div>
+      <PostList />
     </Sidebar>
   );
-}
+};
 
-function SelectButton() {
-  return (
-    <select aria-label='Select Button' className={styles.selectButton}>
-      <option>그림종류</option>
-      {selectButtonItems.map((item) => (
-        <option key={item.value} value={item.value}>
-          {item.text}
-        </option>
-      ))}
-    </select>
-  );
-}
+export default Board;
