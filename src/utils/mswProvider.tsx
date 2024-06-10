@@ -23,7 +23,7 @@ export default function MswProvider({ children }: Props) {
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'development' && !isInit) configMsw();
-  }, []);
+  }, [isInit]);
 
   if (process.env.NODE_ENV !== 'development' || isInit) {
     return <>{children}</>;
