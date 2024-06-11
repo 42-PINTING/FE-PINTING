@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Title from './Titile';
+import Title from '@/global/components/Titile';
 import { FaGithub, FaHeart, FaPen, FaUser, FaSlideshare } from 'react-icons/fa';
 import { BsEnvelopePaperHeart } from 'react-icons/bs';
 import { LuTreeDeciduous } from 'react-icons/lu';
