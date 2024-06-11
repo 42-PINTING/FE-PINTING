@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
+import { profileState } from '@/global/atoms/profile';
+import styles from '@/global/styles/SignInButton.module.scss';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
-import { profileState } from '@/_globalAtoms/profile';
-import styles from '@/_globalStyles/SignInButton.module.scss';
+import Link from 'next/link';
 
 //================SignButton================
 export const SignButton = () => {

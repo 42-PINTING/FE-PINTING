@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
-import styles from '@/_globalStyles/SignInButton.module.scss';
-import { profileState } from '@/_globalAtoms/profile';
+import styles from '@/global/styles/SignInButton.module.scss';
+import { profileState } from '@/global/atoms/profile';
 import { cookies } from 'next/headers';
 
 export default function SignInButton() {

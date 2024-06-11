@@ -1,4 +1,4 @@
-import { instance } from '@/utils/axios';
+import { instance } from '@/global/utils/axios';
 // api 정하고 호출하기
 const PostList = () => {
   instance

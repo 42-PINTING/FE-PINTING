@@ -1,7 +1,7 @@
 'use client';
 
-import Sidebar from '@/_globalComponents/Sidebar';
-import { SignButton, SelectButton } from '@/_globalComponents/Button';
+import Sidebar from '@/global/components/Sidebar';
+import { SignButton, SelectButton } from '@/global/components/Button';
 import styles from './_styles/board.module.scss';
 import { FaSearch } from 'react-icons/fa';
 import PostList from './_components/posts';

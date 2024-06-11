@@ -1,9 +1,9 @@
 'use client';
 
-import { profileState } from '@/_globalAtoms/profile';
+import { profileState } from '@/global/atoms/profile';
 import { useSetRecoilState } from 'recoil';
 import { FC } from 'react';
-import { instance } from '@/utils/axios';
+import { instance } from '@/global/utils/axios';
 
 type useSetProfileProps = {
   children: React.ReactNode;

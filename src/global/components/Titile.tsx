@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '@/_globalStyles/tilte.module.scss';
+import styles from '@/global/styles/tilte.module.scss';
 
 const titleColor = [
   '#669CED',

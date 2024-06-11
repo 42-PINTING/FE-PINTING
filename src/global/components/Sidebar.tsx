@@ -1,13 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import styles from '../_globalStyles/Sidebar.module.scss';
 import Title from './Titile';
 import { FaGithub, FaHeart, FaPen, FaUser, FaSlideshare } from 'react-icons/fa';
 import { BsEnvelopePaperHeart } from 'react-icons/bs';
 import { LuTreeDeciduous } from 'react-icons/lu';
 import { useRecoilValue } from 'recoil';
-import { profileState } from '@/_globalAtoms/profile';
+import { profileState } from '../atoms/profile';
+import styles from '@/global/styles/Sidebar.module.scss';
 
 /**
  * 그리기 == 개인 그림

@@ -1,8 +1,8 @@
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
-import RecoilRootProvider from '@/utils/recoilProvider';
-import SetProfile from '@/_globalComponents/SetProfile';
-import MswProvider from '@/utils/mswProvider';
+import RecoilRootProvider from '@/global/utils/recoilProvider';
+import SetProfile from '@/global/components/SetProfile';
+import MswProvider from '@/global/utils/mswProvider';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
