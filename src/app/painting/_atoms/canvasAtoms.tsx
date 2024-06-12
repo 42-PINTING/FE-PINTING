@@ -9,3 +9,8 @@ export const canvasIndexState = atom<number>({
   key: 'canvasIndexState',
   default: -1,
 });
+
+export const undoRedoState = atom<number>({
+  key: 'undoRedoState',
+  default: 0,
+});

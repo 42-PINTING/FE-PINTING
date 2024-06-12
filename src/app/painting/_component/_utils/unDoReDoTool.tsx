@@ -1,9 +1,10 @@
 // undoRedoTool.tsx
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   canvasHistoryState,
   canvasIndexState,
+  undoRedoState,
 } from '@/app/painting/_atoms/canvasAtoms';
 import { fabric } from 'fabric';
 
@@ -12,16 +13,19 @@ interface UndoRedoToolProps {
 }
 
 const UndoRedoTool: React.FC<UndoRedoToolProps> = ({ canvas }) => {
-  const [history, setHistory] = useRecoilState(canvasHistoryState);
+  const history = useRecoilValue(canvasHistoryState);
   const [currentIndex, setCurrentIndex] = useRecoilState(canvasIndexState);
+  const [undoState, setUndoState] = useRecoilState(undoRedoState);
 
   const handleUndo = () => {
-    if (currentIndex > 0 && canvas) {
+    if (currentIndex >= 0 && canvas) {
       const previousState = history[currentIndex - 1];
       canvas.loadFromJSON(previousState, () => {
-        canvas.renderAll();
+        // canvas.renderAll();
+        setUndoState(1);
       });
       setCurrentIndex(currentIndex - 1);
+      console.log(currentIndex);
     }
   };
 
@@ -29,9 +33,11 @@ const UndoRedoTool: React.FC<UndoRedoToolProps> = ({ canvas }) => {
     if (currentIndex < history.length - 1 && canvas) {
       const nextState = history[currentIndex + 1];
       canvas.loadFromJSON(nextState, () => {
-        canvas.renderAll();
+        // canvas.renderAll();
+        setUndoState(1);
       });
       setCurrentIndex(currentIndex + 1);
+      console.log(currentIndex);
     }
   };
 

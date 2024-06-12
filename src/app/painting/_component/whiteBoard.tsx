@@ -1,9 +1,13 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
 import { fabric } from 'fabric';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import { toolState } from '@/app/painting/_atoms/penAtoms';
-import { canvasHistoryState, canvasIndexState } from '../_atoms/canvasAtoms';
+import {
+  canvasHistoryState,
+  canvasIndexState,
+  undoRedoState,
+} from '../_atoms/canvasAtoms';
 import { SwitchTool } from '@/app/painting/_component/_utils/switchTool';
 import UndoRedoTool from './_utils/unDoReDoTool';
 
@@ -17,6 +21,7 @@ const WhiteBoard = () => {
   const [tool, setTool] = useRecoilState(toolState);
   const [history, setHistory] = useRecoilState(canvasHistoryState);
   const [currentIndex, setCurrentIndex] = useRecoilState(canvasIndexState);
+  const [undoState, setUndoState] = useRecoilState(undoRedoState);
 
   // Canvas 초기화 useEffect
   useEffect(() => {
@@ -68,18 +73,26 @@ const WhiteBoard = () => {
   useEffect(() => {
     if (!canvas) return;
 
-    const saveState = () => {
-      const json = canvas.toJSON();
-      const newHistory = [
-        ...history.slice(0, currentIndex + 1),
-        JSON.stringify(json),
-      ];
-      if (newHistory.length > 10) {
-        newHistory.shift();
+    const saveState = (event: fabric.IEvent) => {
+      if (!event.target) return;
+      if (undoState === 1) {
+        setUndoState(0);
+        // canvas.renderAll();
+        // undoState가 1일 경우 saveState 실행하지 않음
+      } else if (undoState === 0) {
+        const json = JSON.stringify(canvas.toJSON());
+        const newHistory = [...history.slice(0, currentIndex), json];
+
+        if (newHistory.length > 10) {
+          newHistory.shift();
+        }
+
+        setHistory(newHistory as fabric.Object[][]);
+        setCurrentIndex(newHistory.length);
+        console.log(currentIndex);
       }
-      setHistory(newHistory as fabric.Object[][]);
-      setCurrentIndex(newHistory.length - 1);
     };
+
     canvas.on('object:added', saveState);
     canvas.on('object:modified', saveState);
     canvas.on('object:removed', saveState);
@@ -88,7 +101,7 @@ const WhiteBoard = () => {
       if (event.key === 'Backspace' || event.key === 'Delete') {
         if (canvas.getActiveObject()) {
           canvas.remove(canvas.getActiveObject() as fabric.Object);
-          saveState();
+          saveState;
         }
       }
     };
@@ -101,7 +114,14 @@ const WhiteBoard = () => {
       canvas.off('object:removed', saveState);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [canvas, history, currentIndex, setHistory, setCurrentIndex]);
+  }, [
+    currentIndex,
+    history,
+    undoState,
+    setCurrentIndex,
+    setHistory,
+    setUndoState,
+  ]);
 
   const handleToolChange = (selectedTool: string) => {
     setTool(selectedTool);
