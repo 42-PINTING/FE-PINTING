@@ -1,6 +1,6 @@
 // undoRedoTool.tsx
 import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useRecoilCallback } from 'recoil';
 import {
   canvasHistoryState,
   canvasIndexState,
@@ -15,16 +15,17 @@ interface UndoRedoToolProps {
 const UndoRedoTool: React.FC<UndoRedoToolProps> = ({ canvas }) => {
   const history = useRecoilValue(canvasHistoryState);
   const [currentIndex, setCurrentIndex] = useRecoilState(canvasIndexState);
-  const [undoState, setUndoState] = useRecoilState(undoRedoState);
-
+  const setUndoState = useRecoilCallback(({ set }) => (undoState: boolean) => {
+    set(undoRedoState, undoState);
+  });
   const handleUndo = () => {
-    if (currentIndex >= 0 && canvas) {
+    if (currentIndex > 0 && canvas) {
       const previousState = history[currentIndex - 1];
       canvas.loadFromJSON(previousState, () => {
-        // canvas.renderAll();
-        setUndoState(1);
+        canvas.renderAll();
       });
       setCurrentIndex(currentIndex - 1);
+      setUndoState(true);
       console.log(currentIndex);
     }
   };
@@ -33,10 +34,10 @@ const UndoRedoTool: React.FC<UndoRedoToolProps> = ({ canvas }) => {
     if (currentIndex < history.length - 1 && canvas) {
       const nextState = history[currentIndex + 1];
       canvas.loadFromJSON(nextState, () => {
-        // canvas.renderAll();
-        setUndoState(1);
+        canvas.renderAll();
       });
       setCurrentIndex(currentIndex + 1);
+      setUndoState(true);
       console.log(currentIndex);
     }
   };

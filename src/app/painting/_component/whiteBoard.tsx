@@ -70,28 +70,26 @@ const WhiteBoard = () => {
   }, []);
 
   // 히스토리 관리 useEffect
+  const saveState = (event: fabric.IEvent) => {
+    if (!event.target) return;
+    if (undoState) {
+      setUndoState(false);
+    } else if (!undoState) {
+      const json = JSON.stringify(canvas.toJSON());
+      const newHistory = [...history.slice(0, currentIndex), json];
+
+      if (newHistory.length > 10) {
+        newHistory.shift();
+      }
+
+      setHistory(newHistory as fabric.Object[][]);
+      setCurrentIndex(newHistory.length);
+
+      console.log(currentIndex);
+    }
+  };
   useEffect(() => {
     if (!canvas) return;
-
-    const saveState = (event: fabric.IEvent) => {
-      if (!event.target) return;
-      if (undoState === 1) {
-        setUndoState(0);
-        // canvas.renderAll();
-        // undoState가 1일 경우 saveState 실행하지 않음
-      } else if (undoState === 0) {
-        const json = JSON.stringify(canvas.toJSON());
-        const newHistory = [...history.slice(0, currentIndex), json];
-
-        if (newHistory.length > 10) {
-          newHistory.shift();
-        }
-
-        setHistory(newHistory as fabric.Object[][]);
-        setCurrentIndex(newHistory.length);
-        console.log(currentIndex);
-      }
-    };
 
     canvas.on('object:added', saveState);
     canvas.on('object:modified', saveState);
@@ -101,8 +99,8 @@ const WhiteBoard = () => {
       if (event.key === 'Backspace' || event.key === 'Delete') {
         if (canvas.getActiveObject()) {
           canvas.remove(canvas.getActiveObject() as fabric.Object);
-          saveState;
         }
+        saveState;
       }
     };
 
@@ -114,14 +112,7 @@ const WhiteBoard = () => {
       canvas.off('object:removed', saveState);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [
-    currentIndex,
-    history,
-    undoState,
-    setCurrentIndex,
-    setHistory,
-    setUndoState,
-  ]);
+  }, [history]);
 
   const handleToolChange = (selectedTool: string) => {
     setTool(selectedTool);
