@@ -3,12 +3,13 @@ import Image from 'next/image';
 import SignForm from './_component/SignForm';
 import Oauth from './_component/Oauth';
 import styles from './_styles/signIn.module.scss';
+import Title from '@/global/components/Titile';
 
 export default function SignIn() {
   return (
     <div className={styles.signInLayout}>
       <div className={styles.titleLoginBox}>
-        <h1 className={styles.signInTitle}>PINTING</h1>
+        <Title.basic />
         <SignForm />
         <div className={styles.oauthBtnGroup}>
           <Oauth.Google />
