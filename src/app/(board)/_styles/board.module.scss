@@ -1,0 +1,58 @@
+.accountMenu {
+  display: flex;
+  justify-content: right;
+  font-weight: 300;
+  font-size: 1rem;
+  margin-top: 2rem;
+  margin-right: 10%;
+}
+
+.profileButton {
+  border-radius: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  background-color: antiquewhite;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  bottom: 0;
+}
+
+.boardTilte {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.verticalLine {
+  margin: 0.1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: 0rem;
+  border-left: thick solid black;
+  height: 1.5rem;
+}
+
+.paintType {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.searchBox {
+  display: flex;
+  bottom: 0;
+  margin-left: 2rem;
+  height: 1.3rem;
+}
+
+.selectButton {
+  display: flex;
+  margin-right: 10%;
+}

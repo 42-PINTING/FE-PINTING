@@ -1,5 +1,5 @@
 'use client';
-import { instance } from '../../utils/axios';
+import { instance } from '../../global/utils/axios';
 import { ChangeEvent, useState } from 'react';
 
 export default function SignUp() {
