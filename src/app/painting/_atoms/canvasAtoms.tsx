@@ -12,5 +12,5 @@ export const canvasIndexState = atom<number>({
 
 export const undoRedoState = atom<boolean>({
   key: 'undoRedoState',
-  default: false,
+  default: true,
 });
