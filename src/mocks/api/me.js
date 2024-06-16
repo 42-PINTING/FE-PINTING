@@ -4,14 +4,12 @@ export const profile = [
   http.post(`${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/me`, ({ request }) => {
     const token = request.headers.get('Authorization');
 
-    if (token === '') {
+    if (token === null) {
       return new HttpResponse(null, {
         status: 401,
         statusText: 'token is not provided',
       });
     }
-
-    console.log('mock token:', token);
 
     const profile = {
       email: 'juha@student.42seoul.kr',
