@@ -3,23 +3,27 @@ import { useEffect, useState, useRef } from 'react';
 import { fabric } from 'fabric';
 import { useRecoilState } from 'recoil';
 import { toolState } from '@/app/painting/_atoms/penAtoms';
-import SwitchTool from '@/app/painting/_component/_utils/switchTool';
+import { SwitchTool } from '@/app/painting/_component/_utils/switchTool';
+import UndoRedoTool from './_utils/unDoReDoTool';
 
 const WhiteBoard = () => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
-  const [initialCanvasSize, setInitialCanvasSize] = useState({
+  const [initialCanvasSize] = useState({
     width: 1000,
     height: 500,
   });
   const [tool, setTool] = useRecoilState(toolState);
 
   useEffect(() => {
+    if (!canvasRef.current) return;
+
     const newCanvas = new fabric.Canvas(canvasRef.current, {
       width: initialCanvasSize.width,
       height: initialCanvasSize.height,
     });
     setCanvas(newCanvas);
+
     newCanvas.on('mouse:wheel', function (opt) {
       const delta = opt.e.deltaY;
       let zoom = newCanvas.getZoom();
@@ -63,6 +67,7 @@ const WhiteBoard = () => {
         tool={tool}
         canvas={canvas}
       />
+      <UndoRedoTool canvas={canvas} />
       <canvas
         ref={canvasRef}
         width='800'

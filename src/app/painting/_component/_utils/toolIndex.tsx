@@ -1,30 +1,26 @@
 'use client';
-import { basicPen } from '@/app/painting/_component/_utils/penTool';
+import { BasicPen } from '@/app/painting/_component/_utils/penTool';
 import {
-  panningTool,
-  disablePanningTool,
+  PanningTool,
+  DisablePanningTool,
 } from '@/app/painting/_component/_utils/panningTool';
 import selectionTool from '@/app/painting/_component/_utils/selectionTool';
-import {
-  triangleTool,
-  rectangleTool,
-  circleTool,
-} from '@/app/painting/_component/_utils/shapeTool';
+import { TriangleTool, RectangleTool, CircleTool } from './shapeTool';
 
 export const Pen = {
-  basic: basicPen,
+  basic: BasicPen,
 };
 
 export const Shapes = {
-  triangle: triangleTool,
-  rectangle: rectangleTool,
-  circle: circleTool,
+  triangle: TriangleTool,
+  rectangle: RectangleTool,
+  circle: CircleTool,
 };
 
 export const Tool = {
   pen: Pen,
   shape: Shapes,
   selection: selectionTool,
-  panning: panningTool,
-  disablePanning: disablePanningTool,
+  panning: PanningTool,
+  disablePanning: DisablePanningTool,
 };

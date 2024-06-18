@@ -1,6 +1,6 @@
-const selectionTool = (canvas: fabric.Canvas) => {
+const SelectionTool = (canvas: fabric.Canvas) => {
   canvas.isDrawingMode = false;
   canvas.selection = true;
 };
 
-export default selectionTool;
+export default SelectionTool;
