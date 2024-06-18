@@ -52,7 +52,7 @@ const WhiteBoard = () => {
     };
   }, []);
 
-  const handleToolChange = (selectedTool: any) => {
+  const handleToolChange = (selectedTool: string) => {
     setTool(selectedTool);
   };
 
