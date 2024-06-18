@@ -2,9 +2,6 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    serverComponentsExternalPackages: ['fabric'],
-  },
   webpack: (config, { isServer }) => {
     // server일시 browser를 제외 시킨다
     if (isServer) {
