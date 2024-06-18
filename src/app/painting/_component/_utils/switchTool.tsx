@@ -8,7 +8,7 @@ interface SwitchToolProps {
   canvas: fabric.Canvas | null;
 }
 
-const SwitchTool: React.FC<SwitchToolProps> = ({
+export const SwitchTool: React.FC<SwitchToolProps> = ({
   handleToolChange,
   tool,
   canvas,
@@ -74,5 +74,3 @@ const SwitchTool: React.FC<SwitchToolProps> = ({
     </div>
   );
 };
-
-export default SwitchTool;
