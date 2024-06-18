@@ -1,9 +1,13 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import { useRecoilState } from 'recoil';
+import { toolState } from '@/app/painting/_atoms/penAtoms';
+import { SwitchTool } from './_utils/switchTool';
 
 const WhiteBoard = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [tool, setTool] = useRecoilState(toolState);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -17,7 +21,28 @@ const WhiteBoard = () => {
       }
     }
   }, []);
-  return <canvas ref={canvasRef} style={{ border: '1px solid #000' }}></canvas>;
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      canvas.style.cursor = tool === 'pen' ? 'crosshair' : 'default';
+    }
+  }, [tool]);
+
+  const handleToolChange = (selectedTool: string) => {
+    setTool(selectedTool);
+  };
+
+  return (
+    <>
+      <SwitchTool
+        handleToolChange={handleToolChange}
+        tool={tool}
+        canvas={canvasRef.current}
+      />
+      <canvas ref={canvasRef} style={{ border: '1px solid #000' }}></canvas>
+    </>
+  );
 };
 
 export default WhiteBoard;
