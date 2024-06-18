@@ -1,5 +1,5 @@
 'use client';
-import { basicPen } from '@/app/painting/_component/_utils/penTool';
+import { basicPen, eraserTool } from '@/app/painting/_component/_utils/penTool';
 import {
   panningTool,
   disablePanningTool,
@@ -13,6 +13,7 @@ import {
 
 export const Pen = {
   basic: basicPen,
+  eraser: eraserTool,
 };
 
 export const Shapes = {

@@ -23,6 +23,10 @@ const SwitchTool: React.FC<SwitchToolProps> = ({
         Tool.disablePanning(canvas);
         Tool.pen.basic(canvas);
         break;
+      case 'circle':
+        Tool.disablePanning(canvas);
+        removeListeners = Tool.pen.eraser(canvas);
+        break;
       case 'selection':
         Tool.disablePanning(canvas);
         Tool.selection(canvas);
@@ -61,6 +65,7 @@ const SwitchTool: React.FC<SwitchToolProps> = ({
   return (
     <div>
       <button onClick={() => handleButtonClick('pen')}>펜</button>
+      <button onClick={() => handleButtonClick('eraser')}>지우개</button>
       <button onClick={() => handleButtonClick('selection')}>선택</button>
       <button onClick={() => handleButtonClick('panning')}>이동</button>
       <button onClick={() => handleButtonClick('triangle')}>삼각형</button>
