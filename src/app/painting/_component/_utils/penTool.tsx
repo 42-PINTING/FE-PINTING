@@ -21,7 +21,7 @@ const draw = ({ context, prevPos, currPos }: DrawOptions) => {
 export const basicPen = (canvas: HTMLCanvasElement) => {
   const context = canvas.getContext('2d');
 
-  if (!context) return () => {};
+  if (!context) return;
 
   let drawing = false;
   let prevPos = { x: 0, y: 0 };
@@ -36,7 +36,7 @@ export const basicPen = (canvas: HTMLCanvasElement) => {
   };
 
   const drawLine = (event: MouseEvent) => {
-    if (!drawing) return;
+    if (!drawing) return undefined;
 
     const currPos = { x: event.offsetX, y: event.offsetY };
     draw({ context, prevPos, currPos });
