@@ -1,20 +1,10 @@
-// 'use client';
+'use client';
+import { basicPen } from './penTool';
 
-// export const Pen = {
-//   basic: basicPen,
-//   eraser: eraserTool,
-// };
+export const Pen = {
+  basic: basicPen,
+};
 
-// export const Shapes = {
-//   triangle: TriangleTool,
-//   rectangle: RectangleTool,
-//   circle: CircleTool,
-// };
-
-// export const Tool = {
-//   pen: Pen,
-//   shape: Shapes,
-//   selection: selectionTool,
-//   panning: PanningTool,
-//   disablePanning: DisablePanningTool,
-// };
+export const Tool = {
+  pen: Pen,
+};
