@@ -16,14 +16,6 @@ export const profile = [
       nickname: 'juha',
       image: 'https://cdn.intra.42.fr/users/juha.jpg',
       permission: 'user',
-      blockList: [
-        {
-          email: 'test@naver.com',
-        },
-        {
-          email: 'test@gmail.com',
-        },
-      ],
     };
 
     return new HttpResponse(JSON.stringify(profile), { status: 200 });
