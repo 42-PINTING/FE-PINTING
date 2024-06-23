@@ -1,75 +1,85 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
-import { fabric } from 'fabric';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { toolState } from '@/app/painting/_atoms/penAtoms';
-import SwitchTool from '@/app/painting/_component/_utils/switchTool';
+import { SwitchTool } from './_utils/switchTool';
 
-const WhiteBoard = () => {
-  const canvasRef = useRef(null);
-  const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
-  const [initialCanvasSize, setInitialCanvasSize] = useState({
-    width: 1000,
-    height: 500,
-  });
+const WhiteBoard: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [tool, setTool] = useRecoilState(toolState);
 
+  const resizeCanvas = (canvas: HTMLCanvasElement) => {
+    const context = canvas.getContext('2d');
+    if (context) {
+      const originalWidth = canvas.width;
+      const originalHeight = canvas.height;
+      const savedContent = context.getImageData(
+        0,
+        0,
+        originalWidth,
+        originalHeight
+      );
+
+      // 캔버스 크기 조정
+      canvas.width = window.innerWidth * (3 / 5);
+      canvas.height = window.innerHeight * (3 / 5);
+      context.fillStyle = '#ffffff'; // 배경색 설정
+      context.fillRect(0, 0, canvas.width, canvas.height);
+
+      // 저장된 내용을 새로운 크기에 맞춰 다시 그리기
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = originalWidth;
+      tempCanvas.height = originalHeight;
+      const tempContext = tempCanvas.getContext('2d');
+      if (tempContext) {
+        tempContext.putImageData(savedContent, 0, 0);
+        context.drawImage(
+          tempCanvas,
+          0,
+          0,
+          originalWidth,
+          originalHeight,
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+      }
+    }
+  };
+
   useEffect(() => {
-    const newCanvas = new fabric.Canvas(canvasRef.current, {
-      width: initialCanvasSize.width,
-      height: initialCanvasSize.height,
-    });
-    setCanvas(newCanvas);
-    newCanvas.on('mouse:wheel', function (opt) {
-      const delta = opt.e.deltaY;
-      let zoom = newCanvas.getZoom();
-      zoom *= 0.999 ** delta;
-      if (zoom > 20) zoom = 20;
-      if (zoom < 0.01) zoom = 0.01;
-      newCanvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
-      opt.e.preventDefault();
-      opt.e.stopPropagation();
-    });
-
-    const resizeCanvas = () => {
-      const newWidth = Math.max(
-        window.innerWidth * (2 / 3),
-        initialCanvasSize.width
-      );
-      const newHeight = Math.max(
-        window.innerHeight * (2 / 3),
-        initialCanvasSize.height
-      );
-      newCanvas.setWidth(newWidth);
-      newCanvas.setHeight(newHeight);
-      newCanvas.renderAll();
-    };
-    window.addEventListener('resize', resizeCanvas);
-
-    return () => {
-      newCanvas.dispose();
-      window.removeEventListener('resize', resizeCanvas);
-    };
+    const canvas = canvasRef.current;
+    if (canvas) {
+      resizeCanvas(canvas);
+      const handleResize = () => resizeCanvas(canvas);
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
   }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      canvas.style.cursor = tool === 'pen' ? 'crosshair' : 'default';
+    }
+  }, [tool]);
 
   const handleToolChange = (selectedTool: string) => {
     setTool(selectedTool);
   };
 
   return (
-    <div>
+    <>
       <SwitchTool
         handleToolChange={handleToolChange}
         tool={tool}
-        canvas={canvas}
+        canvas={canvasRef.current}
       />
-      <canvas
-        ref={canvasRef}
-        width='800'
-        height='600'
-        style={{ border: '1px solid #ccc' }}
-      ></canvas>
-    </div>
+      <canvas ref={canvasRef} style={{ border: '1px solid #000' }}></canvas>
+    </>
   );
 };
 
