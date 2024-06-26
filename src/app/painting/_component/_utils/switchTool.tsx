@@ -5,7 +5,7 @@ import { Tool } from '@/app/painting/_component/_utils/toolIndex';
 interface SwitchToolProps {
   handleToolChange: (tool: string) => void;
   tool: string;
-  canvas: HTMLCanvasElement | null;
+  canvas: fabric.Canvas | null;
 }
 
 export const SwitchTool: React.FC<SwitchToolProps> = ({
@@ -25,6 +25,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
         break;
       case 'test':
         console.log('test1');
+        canvas.isDrawingMode = false;
       default:
         break;
     }
