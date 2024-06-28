@@ -27,11 +27,13 @@ const WhiteBoard = () => {
       });
 
       // 객체가 추가될 때 selectable 속성을 false로 설정
-      newCanvas.on('object:added', (e) => {
-        e.target.selectable = false;
+      newCanvas.on('object:added', (e: fabric.IEvent) => {
+        if (e.target) {
+          e.target.selectable = false;
+        }
       });
 
-      newCanvas.on('mouse:wheel', (opt) => {
+      newCanvas.on('mouse:wheel', (opt: fabric.IEvent<WheelEvent>) => {
         const delta = opt.e.deltaY;
         let zoom = newCanvas.getZoom();
         zoom *= 0.999 ** delta;
