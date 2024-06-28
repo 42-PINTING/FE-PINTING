@@ -20,13 +20,19 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
 
     switch (tool) {
       case 'pen':
-        console.log('Switching to pen tool');
+        Tool.selection.disable(canvas);
         removeListeners = Tool.pen.basic(canvas);
         break;
       case 'test':
-        console.log('test1');
+        canvas.selection = false;
+        Tool.selection.disable(canvas);
         canvas.isDrawingMode = false;
+        break;
+      case 'select':
+        removeListeners = Tool.selection.enable(canvas); // 선택 기능 활성화
+        break;
       default:
+        Tool.selection.disable(canvas);
         break;
     }
 
@@ -45,6 +51,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
     <div>
       <button onClick={() => handleButtonClick('pen')}>펜</button>
       <button onClick={() => handleButtonClick('test')}>test</button>
+      <button onClick={() => handleButtonClick('select')}>선택</button>
     </div>
   );
 };
