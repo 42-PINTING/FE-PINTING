@@ -18,6 +18,25 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
 
     let removeListeners: (() => void) | undefined;
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Alt') {
+        canvas.isDrawingMode = false;
+        Tool.panning.enable(canvas);
+      }
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === 'Alt') {
+        Tool.panning.enable(canvas);
+        if (tool !== 'panning') {
+          handleToolChange(tool); // 원래 도구로 되돌리기
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
     switch (tool) {
       case 'pen':
         Tool.selection.disable(canvas);
@@ -43,6 +62,8 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       if (removeListeners) {
         removeListeners();
       }
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
     };
   }, [tool, canvas]);
 
