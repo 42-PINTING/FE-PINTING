@@ -22,7 +22,7 @@ const WhiteBoard = () => {
       canvasRef.current = newCanvas;
       setCanvasSize(newCanvas);
 
-      newCanvas.on('mouse:wheel', (opt) => {
+      newCanvas.on('mouse:wheel', (opt: fabric.IEvent<WheelEvent>) => {
         const delta = opt.e.deltaY;
         let zoom = newCanvas.getZoom();
         zoom *= 0.999 ** delta;
