@@ -8,11 +8,11 @@ $Width: 12%;
 
 .nav {
   display: flex;
-  margin: 0;
+  margin: 16;
   overflow: hidden;
   min-width: $Width;
   max-width: $Width;
-  min-height: 100vh;
+  min-height: 80vh;
   overflow-y: auto;
   background-color: white;
   border-right: 1px solid #e7e7e7;
@@ -38,7 +38,7 @@ $Width: 12%;
 
 .item {
   display: flex;
-  margin: 1rem;
+  margin: 1.5rem;
 }
 
 .link {
