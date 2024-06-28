@@ -31,6 +31,9 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       case 'select':
         removeListeners = Tool.selection.enable(canvas); // 선택 기능 활성화
         break;
+      case 'panning':
+        removeListeners = Tool.panning.enable(canvas);
+        break;
       default:
         Tool.selection.disable(canvas);
         break;
@@ -52,6 +55,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       <button onClick={() => handleButtonClick('pen')}>펜</button>
       <button onClick={() => handleButtonClick('test')}>test</button>
       <button onClick={() => handleButtonClick('select')}>선택</button>
+      <button onClick={() => handleButtonClick('panning')}>이동</button>
     </div>
   );
 };
