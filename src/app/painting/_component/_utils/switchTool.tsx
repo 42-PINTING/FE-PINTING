@@ -18,6 +18,25 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
 
     let removeListeners: (() => void) | undefined;
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Alt') {
+        canvas.isDrawingMode = false;
+        Tool.panning.enable(canvas);
+      }
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === 'Alt') {
+        Tool.panning.enable(canvas);
+        if (tool !== 'panning') {
+          handleToolChange(tool); // 원래 도구로 되돌리기
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
     switch (tool) {
       case 'pen':
         Tool.selection.disable(canvas);
@@ -31,6 +50,9 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       case 'select':
         removeListeners = Tool.selection.enable(canvas); // 선택 기능 활성화
         break;
+      case 'panning':
+        removeListeners = Tool.panning.enable(canvas);
+        break;
       default:
         Tool.selection.disable(canvas);
         break;
@@ -40,6 +62,8 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       if (removeListeners) {
         removeListeners();
       }
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
     };
   }, [tool, canvas]);
 
@@ -52,6 +76,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       <button onClick={() => handleButtonClick('pen')}>펜</button>
       <button onClick={() => handleButtonClick('test')}>test</button>
       <button onClick={() => handleButtonClick('select')}>선택</button>
+      <button onClick={() => handleButtonClick('panning')}>이동</button>
     </div>
   );
 };

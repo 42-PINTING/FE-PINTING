@@ -5,7 +5,6 @@ export const enableSelection = (canvas: fabric.Canvas) => {
   if (!canvas) return;
 
   // 선택 기능 활성화
-  console.log('enable');
   canvas.selection = true;
   canvas.forEachObject((obj) => {
     obj.selectable = true;
