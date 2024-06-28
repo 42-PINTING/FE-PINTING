@@ -17,6 +17,17 @@ const WhiteBoard = () => {
       const newCanvas = new fabric.Canvas(fabricRef.current);
       canvasRef.current = newCanvas;
       setCanvasSize(newCanvas);
+
+      newCanvas.on('mouse:wheel', (opt) => {
+        const delta = opt.e.deltaY;
+        let zoom = newCanvas.getZoom();
+        zoom *= 0.999 ** delta;
+        if (zoom > 20) zoom = 20;
+        if (zoom < 0.01) zoom = 0.01;
+        newCanvas.setZoom(zoom);
+        opt.e.preventDefault();
+        opt.e.stopPropagation();
+      });
     }
 
     const handleResize = () => {
