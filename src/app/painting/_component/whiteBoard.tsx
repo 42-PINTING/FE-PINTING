@@ -6,7 +6,7 @@ const WhiteBoard = () => {
   const fabricRef = useRef(null);
   const canvasRef = useRef(null);
 
-  const setCanvasSize = (canvas) => {
+  const setCanvasSize = (canvas: fabric.Canvas) => {
     const width = (window.innerWidth * 2) / 3;
     const height = (window.innerHeight * 2) / 3;
     canvas.setWidth(width);
