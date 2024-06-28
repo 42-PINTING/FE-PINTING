@@ -1,7 +1,7 @@
 'use client';
 import { fabric } from 'fabric';
 
-export const enableSelection = (canvas) => {
+export const enableSelection = (canvas: fabric.Canvas) => {
   if (!canvas) return;
 
   // 선택 기능 활성화
@@ -18,7 +18,7 @@ export const enableSelection = (canvas) => {
   return removeListeners;
 };
 
-export const disableSelection = (canvas) => {
+export const disableSelection = (canvas: fabric.Canvas) => {
   if (!canvas) return;
 
   canvas.selection = false;
