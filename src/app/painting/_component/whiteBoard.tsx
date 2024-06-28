@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import { fabric } from 'fabric';
 
 const WhiteBoard = () => {
-  const fabricRef = useRef(null);
-  const canvasRef = useRef(null);
+  const fabricRef = useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef<fabric.Canvas | null>(null);
 
   const setCanvasSize = (canvas: fabric.Canvas) => {
     const width = (window.innerWidth * 2) / 3;
