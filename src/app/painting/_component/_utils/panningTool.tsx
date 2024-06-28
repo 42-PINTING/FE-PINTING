@@ -8,12 +8,10 @@ export const enablePanning = (canvas: fabric.Canvas) => {
 
   const onMouseDown = (opt: fabric.IEvent) => {
     const e = opt.e as MouseEvent;
-    if (e.altKey) {
-      isPanning = true;
-      lastPosX = e.clientX;
-      lastPosY = e.clientY;
-      canvas.selection = false;
-    }
+    isPanning = true;
+    lastPosX = e.clientX;
+    lastPosY = e.clientY;
+    canvas.selection = false;
   };
 
   const onMouseMove = (opt: fabric.IEvent) => {
