@@ -4,7 +4,10 @@ import {
   enableSelection,
   disableSelection,
 } from '@/app/painting/_component/_utils/selectTool';
-import { enablePanning } from '@/app/painting/_component/_utils/panningTool';
+import {
+  enablePanning,
+  disablePanning,
+} from '@/app/painting/_component/_utils/panningTool';
 
 export const Pen = {
   basic: basicPen,
@@ -17,6 +20,7 @@ export const Selection = {
 
 export const Panning = {
   enable: enablePanning,
+  disable: disablePanning,
 };
 
 export const Tool = {
