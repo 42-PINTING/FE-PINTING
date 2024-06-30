@@ -26,6 +26,7 @@ export const Panning = {
 
 export const Shapes = {
   rectangle: ShapeTool.enableRectangle,
+  triangle: ShapeTool.enableTriangle,
 };
 
 export const Tool = {

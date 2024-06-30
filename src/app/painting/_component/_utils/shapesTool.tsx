@@ -20,7 +20,7 @@ const startDrawingShape = (
     const width = Math.abs(pointer.x - (shape.left || 0));
     const height = Math.abs(pointer.y - (shape.top || 0));
 
-    if (shape instanceof fabric.Rect) {
+    if (shape instanceof fabric.Rect || shape instanceof fabric.Triangle) {
       shape.set({ width, height });
     }
     canvas.requestRenderAll();
@@ -45,6 +45,20 @@ export const ShapeTool = {
   enableRectangle: (canvas: fabric.Canvas) => {
     return startDrawingShape(canvas, (pointer) => {
       return new fabric.Rect({
+        left: pointer.x,
+        top: pointer.y,
+        width: 0,
+        height: 0,
+        fill: 'transparent',
+        stroke: 'black',
+        strokeWidth: 2,
+        selectable: true,
+      });
+    });
+  },
+  enableTriangle: (canvas: fabric.Canvas) => {
+    return startDrawingShape(canvas, (pointer) => {
+      return new fabric.Triangle({
         left: pointer.x,
         top: pointer.y,
         width: 0,
