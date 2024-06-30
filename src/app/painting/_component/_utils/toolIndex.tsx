@@ -28,6 +28,7 @@ export const Shapes = {
   rectangle: ShapeTool.enableRectangle,
   triangle: ShapeTool.enableTriangle,
   circle: ShapeTool.enableCircle,
+  line: ShapeTool.enableLine,
 };
 
 export const Tool = {
