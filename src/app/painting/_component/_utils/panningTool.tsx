@@ -41,3 +41,9 @@ export const enablePanning = (canvas: fabric.Canvas) => {
     canvas.off('mouse:up', onMouseUp);
   };
 };
+
+export const disablePanning = (canvas: fabric.Canvas) => {
+  canvas.off('mouse:down');
+  canvas.off('mouse:move');
+  canvas.off('mouse:up');
+};
