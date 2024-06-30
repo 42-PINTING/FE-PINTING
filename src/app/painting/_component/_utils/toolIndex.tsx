@@ -8,6 +8,7 @@ import {
   enablePanning,
   disablePanning,
 } from '@/app/painting/_component/_utils/panningTool';
+import { ShapeTool } from './shapesTool';
 
 export const Pen = {
   basic: basicPen,
@@ -23,8 +24,15 @@ export const Panning = {
   disable: disablePanning,
 };
 
+export const Shapes = {
+  rectangle: ShapeTool.enableRectangle,
+  triangle: ShapeTool.enableTriangle,
+  circle: ShapeTool.enableCircle,
+};
+
 export const Tool = {
   pen: Pen,
   selection: Selection,
   panning: Panning,
+  shapes: Shapes,
 };
