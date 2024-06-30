@@ -22,6 +22,9 @@ const startDrawingShape = (
 
     if (shape instanceof fabric.Rect || shape instanceof fabric.Triangle) {
       shape.set({ width, height });
+    } else if (shape instanceof fabric.Circle) {
+      const radius = Math.sqrt(width * width + height * height) / 2;
+      shape.set({ radius });
     }
     canvas.requestRenderAll();
   };
@@ -63,6 +66,19 @@ export const ShapeTool = {
         top: pointer.y,
         width: 0,
         height: 0,
+        fill: 'transparent',
+        stroke: 'black',
+        strokeWidth: 2,
+        selectable: true,
+      });
+    });
+  },
+  enableCircle: (canvas: fabric.Canvas) => {
+    return startDrawingShape(canvas, (pointer) => {
+      return new fabric.Circle({
+        left: pointer.x,
+        top: pointer.y,
+        radius: 0,
         fill: 'transparent',
         stroke: 'black',
         strokeWidth: 2,

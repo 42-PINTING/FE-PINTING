@@ -65,6 +65,9 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       case 'triangle':
         removeListeners = Tool.shapes.triangle(canvas);
         break;
+      case 'circle':
+        removeListeners = Tool.shapes.circle(canvas);
+        break;
       default:
         Tool.selection.disable(canvas);
         break;
@@ -91,6 +94,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       <button onClick={() => handleButtonClick('panning')}>이동</button>
       <button onClick={() => handleButtonClick('rectangle')}>사각형</button>
       <button onClick={() => handleButtonClick('triangle')}>삼각형</button>
+      <button onClick={() => handleButtonClick('circle')}>원형</button>
     </div>
   );
 };
