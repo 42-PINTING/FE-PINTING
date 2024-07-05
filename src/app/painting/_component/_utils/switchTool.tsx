@@ -22,7 +22,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       if (e.key === 'Alt') {
         canvas.isDrawingMode = false;
         Tool.panning.enable(canvas);
-      } else if (e.key === 'Backspace' || e.key === 'delete') {
+      } else if (e.key === 'delete') {
         const activeObject = canvas.getActiveObject();
         if (activeObject) {
           canvas.remove(activeObject);
