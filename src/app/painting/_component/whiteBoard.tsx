@@ -1,71 +1,61 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { toolState } from '@/app/painting/_atoms/penAtoms';
+import { useEffect, useRef, useState } from 'react';
+import { fabric } from 'fabric';
 import { SwitchTool } from './_utils/switchTool';
+import { useRecoilState } from 'recoil';
+import { toolState } from '../_atoms/penAtoms';
 
-const WhiteBoard: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+const WhiteBoard = () => {
+  const fabricRef = useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef<fabric.Canvas | null>(null);
   const [tool, setTool] = useRecoilState(toolState);
 
-  const resizeCanvas = (canvas: HTMLCanvasElement) => {
-    const context = canvas.getContext('2d');
-    if (context) {
-      const originalWidth = canvas.width;
-      const originalHeight = canvas.height;
-      const savedContent = context.getImageData(
-        0,
-        0,
-        originalWidth,
-        originalHeight
-      );
-
-      // 캔버스 크기 조정
-      canvas.width = window.innerWidth * (3 / 5);
-      canvas.height = window.innerHeight * (3 / 5);
-      context.fillStyle = '#ffffff'; // 배경색 설정
-      context.fillRect(0, 0, canvas.width, canvas.height);
-
-      // 저장된 내용을 새로운 크기에 맞춰 다시 그리기
-      const tempCanvas = document.createElement('canvas');
-      tempCanvas.width = originalWidth;
-      tempCanvas.height = originalHeight;
-      const tempContext = tempCanvas.getContext('2d');
-      if (tempContext) {
-        tempContext.putImageData(savedContent, 0, 0);
-        context.drawImage(
-          tempCanvas,
-          0,
-          0,
-          originalWidth,
-          originalHeight,
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
-      }
-    }
+  const setCanvasSize = (canvas: fabric.Canvas) => {
+    const width = (window.innerWidth * 2) / 3;
+    const height = (window.innerHeight * 2) / 3;
+    canvas.setWidth(width);
+    canvas.setHeight(height);
   };
-
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      resizeCanvas(canvas);
-      const handleResize = () => resizeCanvas(canvas);
-      window.addEventListener('resize', handleResize);
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
+    if (fabricRef.current && !canvasRef.current) {
+      const newCanvas = new fabric.Canvas(fabricRef.current);
+      canvasRef.current = newCanvas;
+      setCanvasSize(newCanvas);
+
+      newCanvas.forEachObject((obj) => {
+        obj.selectable = false;
+      });
+
+      // 객체가 추가될 때 selectable 속성을 false로 설정
+      newCanvas.on('object:added', (e: fabric.IEvent) => {
+        if (e.target) {
+          e.target.selectable = false;
+        }
+      });
+
+      newCanvas.on('mouse:wheel', (opt: fabric.IEvent<WheelEvent>) => {
+        const delta = opt.e.deltaY;
+        let zoom = newCanvas.getZoom();
+        zoom *= 0.999 ** delta;
+        if (zoom > 20) zoom = 20;
+        if (zoom < 0.01) zoom = 0.01;
+        newCanvas.setZoom(zoom);
+        opt.e.preventDefault();
+        opt.e.stopPropagation();
+      });
     }
+
+    const handleResize = () => {
+      if (canvasRef.current) {
+        setCanvasSize(canvasRef.current);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      canvas.style.cursor = tool === 'pen' ? 'crosshair' : 'default';
-    }
-  }, [tool]);
 
   const handleToolChange = (selectedTool: string) => {
     setTool(selectedTool);
@@ -74,13 +64,18 @@ const WhiteBoard: React.FC = () => {
   return (
     <>
       <SwitchTool
-        handleToolChange={handleToolChange}
+        handleToolChange={setTool}
         tool={tool}
         canvas={canvasRef.current}
       />
-      <canvas ref={canvasRef} style={{ border: '1px solid #000' }}></canvas>
+      <canvas
+        id='canvas'
+        ref={fabricRef}
+        style={{ border: '1px solid black' }}
+      ></canvas>
     </>
   );
 };
 
 export default WhiteBoard;
+

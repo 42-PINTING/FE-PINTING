@@ -5,7 +5,7 @@ import { Tool } from '@/app/painting/_component/_utils/toolIndex';
 interface SwitchToolProps {
   handleToolChange: (tool: string) => void;
   tool: string;
-  canvas: HTMLCanvasElement | null;
+  canvas: fabric.Canvas | null;
 }
 
 export const SwitchTool: React.FC<SwitchToolProps> = ({
@@ -18,14 +18,58 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
 
     let removeListeners: (() => void) | undefined;
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Alt') {
+        canvas.isDrawingMode = false;
+        Tool.panning.enable(canvas);
+      } else if (e.key === 'Backspace' || e.key === 'delete') {
+        const activeObject = canvas.getActiveObject();
+        if (activeObject) {
+          canvas.remove(activeObject);
+          canvas.requestRenderAll();
+        }
+      }
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === 'Alt') {
+        Tool.panning.disable(canvas);
+        if (tool !== 'panning') {
+          handleToolChange(tool);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
     switch (tool) {
       case 'pen':
-        console.log('Switching to pen tool');
+        Tool.selection.disable(canvas);
         removeListeners = Tool.pen.basic(canvas);
         break;
       case 'test':
-        console.log('test1');
+        canvas.selection = false;
+        Tool.selection.disable(canvas);
+        canvas.isDrawingMode = false;
+        break;
+      case 'select':
+        removeListeners = Tool.selection.enable(canvas);
+        break;
+      case 'panning':
+        removeListeners = Tool.panning.enable(canvas);
+        break;
+      case 'rectangle':
+        removeListeners = Tool.shapes.rectangle(canvas);
+        break;
+      case 'triangle':
+        removeListeners = Tool.shapes.triangle(canvas);
+        break;
+      case 'circle':
+        removeListeners = Tool.shapes.circle(canvas);
+        break;
       default:
+        Tool.selection.disable(canvas);
         break;
     }
 
@@ -33,6 +77,8 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       if (removeListeners) {
         removeListeners();
       }
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
     };
   }, [tool, canvas]);
 
@@ -44,6 +90,11 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
     <div>
       <button onClick={() => handleButtonClick('pen')}>펜</button>
       <button onClick={() => handleButtonClick('test')}>test</button>
+      <button onClick={() => handleButtonClick('select')}>선택</button>
+      <button onClick={() => handleButtonClick('panning')}>이동</button>
+      <button onClick={() => handleButtonClick('rectangle')}>사각형</button>
+      <button onClick={() => handleButtonClick('triangle')}>삼각형</button>
+      <button onClick={() => handleButtonClick('circle')}>원형</button>
     </div>
   );
 };
