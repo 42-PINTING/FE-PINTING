@@ -1,16 +1,21 @@
 import Image from 'next/image';
 import styles from '../_styles/Oauth.module.scss';
+import Link from 'next/link';
 
 // TODO: api로 Outh 구현
 function Google() {
+  const serverLoginEndpoint =
+    process.env.NEXT_PUBLIC_SERVER_ENDPOINT + '/oauth2/authorization/google';
   return (
     <button className={styles.oauthBtn}>
-      <Image
-        alt='google sign in button'
-        src='/img/googleSignInButton.svg'
-        width={100}
-        height={25}
-      ></Image>
+      <Link href={serverLoginEndpoint}>
+        <Image
+          alt='google sign in button'
+          src='/img/googleSignInButton.svg'
+          width={100}
+          height={25}
+        ></Image>
+      </Link>
     </button>
   );
 }
