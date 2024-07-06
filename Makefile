@@ -26,8 +26,13 @@ build:
 	make pull
 	docker run --mount type=bind,src=.,dst=/build -w /build --name build -i -t node:22-bookworm-slim bash -c "apt-get update && apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && npm i && npm run build"
 
-fclean:
-	make clean
+dev:
+	make pull
+	docker run -p 3000:3000 --mount type=bind,src=.,dst=/build -w /build --name build -i -t node:22-bookworm-slim bash -c "apt-get update && apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && npm i && npm run dev"
+
+clean:
+	docker rm build
 	docker rmi node:22-bookworm-slim
+	docker system prune -af
 
 .PHONY: pull all install dev build clean fclean
