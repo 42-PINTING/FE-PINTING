@@ -5,6 +5,7 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
   let origX = 0;
   let origY = 0;
   let rect: fabric.Rect | null = null;
+  let isDragging = false;
 
   const handleMouseDown = (e: fabric.IEvent) => {
     if (e.pointer) {
@@ -30,14 +31,11 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
 
   const handleMouseMove = (e: fabric.IEvent) => {
     if (!isDown || !rect) return;
+    isDragging = true;
     const pointer = canvas.getPointer(e.e);
-    if (pointer.x < origX) {
-      rect.set({ left: pointer.x });
-    }
-    if (pointer.y < origY) {
-      rect.set({ top: pointer.y });
-    }
     rect.set({
+      left: Math.min(origX, pointer.x),
+      top: Math.min(origY, pointer.y),
       width: Math.abs(origX - pointer.x),
       height: Math.abs(origY - pointer.y),
     });
@@ -50,13 +48,29 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
       const width = Math.abs(origX - pointer.x);
       const height = Math.abs(origY - pointer.y);
 
-      if (width > 10 && height > 10) {
-        // 최소 크기 조건 추가
+      if (isDragging && width > 10 && height > 10) {
+        // 드래그한 경우
         const textbox = new fabric.Textbox('Edit Me', {
           left: rect.left,
           top: rect.top,
           width: rect.width,
           height: rect.height,
+          fontFamily: 'Arial',
+          fontSize: 24,
+          fill: '#333',
+          editable: true,
+        });
+        canvas.add(textbox);
+        canvas.setActiveObject(textbox);
+        textbox.enterEditing();
+        textbox.hiddenTextarea?.focus();
+      } else {
+        // 드래그하지 않은 경우
+        const textbox = new fabric.Textbox('Edit Me', {
+          left: origX,
+          top: origY,
+          width: 10,
+          height: 10,
           fontFamily: 'Arial',
           fontSize: 24,
           fill: '#333',
@@ -72,6 +86,7 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
       canvas.renderAll();
       rect = null;
     }
+    isDragging = false;
     isDown = false;
   };
 
