@@ -5,7 +5,6 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
   let origX = 0;
   let origY = 0;
   let rect: fabric.Rect | null = null;
-  let isDragging = false;
 
   const handleMouseDown = (e: fabric.IEvent) => {
     if (e.pointer) {
@@ -31,7 +30,6 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
 
   const handleMouseMove = (e: fabric.IEvent) => {
     if (!isDown || !rect) return;
-    isDragging = true;
     const pointer = canvas.getPointer(e.e);
     rect.set({
       left: Math.min(origX, pointer.x),
@@ -48,7 +46,7 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
       const width = Math.abs(origX - pointer.x);
       const height = Math.abs(origY - pointer.y);
 
-      if (isDragging && width > 10 && height > 10) {
+      if (width > 10 && height > 10) {
         // 드래그한 경우
         const textbox = new fabric.Textbox('Edit Me', {
           left: rect.left,
@@ -64,29 +62,13 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
         canvas.setActiveObject(textbox);
         textbox.enterEditing();
         textbox.hiddenTextarea?.focus();
-      } else {
-        // 드래그하지 않은 경우
-        const textbox = new fabric.Textbox('Edit Me', {
-          left: origX,
-          top: origY,
-          width: 10,
-          height: 10,
-          fontFamily: 'Arial',
-          fontSize: 24,
-          fill: '#333',
-          editable: true,
-        });
-        canvas.add(textbox);
-        canvas.setActiveObject(textbox);
-        textbox.enterEditing();
-        textbox.hiddenTextarea?.focus();
       }
 
       canvas.remove(rect);
       canvas.renderAll();
       rect = null;
     }
-    isDragging = false;
+
     isDown = false;
   };
 
