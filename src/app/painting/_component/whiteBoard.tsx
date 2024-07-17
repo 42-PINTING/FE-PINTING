@@ -4,11 +4,16 @@ import { fabric } from 'fabric';
 import { SwitchTool } from './_utils/switchTool';
 import { useRecoilState } from 'recoil';
 import { toolState } from '../_atoms/penAtoms';
+import { historyState, historyIndexState } from '../_atoms/canvasAtoms';
+import UndoRedoTool from './_utils/undoRedoTool';
 
 const WhiteBoard = () => {
   const fabricRef = useRef<HTMLCanvasElement | null>(null);
   const canvasRef = useRef<fabric.Canvas | null>(null);
   const [tool, setTool] = useRecoilState(toolState);
+  const [history, setHistory] = useRecoilState(historyState);
+  const [historyIndex, setHistoryIndex] = useRecoilState(historyIndexState);
+  const [isUpdatingHistory, setIsUpdatingHistory] = useState(true);
 
   const setCanvasSize = (canvas: fabric.Canvas) => {
     const width = (window.innerWidth * 2) / 3;
@@ -57,8 +62,34 @@ const WhiteBoard = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (canvasRef.current) {
+      const updateHistory = () => {
+        const objects = canvasRef.current
+          ?.getObjects()
+          .map((obj) => obj.toObject()) as any[];
+        const newHistory = history.slice(0, historyIndex + 1);
+        newHistory.push(objects);
+        setHistory(newHistory);
+        setHistoryIndex(newHistory.length - 1);
+      };
+
+      canvasRef.current.on('object:added', updateHistory);
+
+      return () => {
+        canvasRef.current?.off('object:added', updateHistory);
+      };
+    }
+  }, [canvasRef, setHistory, setHistoryIndex, history, historyIndex]);
+
   const handleToolChange = (selectedTool: string) => {
     setTool(selectedTool);
+  };
+
+  const handleUndoRedo = (action: () => void) => {
+    setIsUpdatingHistory(false);
+    action();
+    setTimeout(() => setIsUpdatingHistory(true), 0); // 다음 렌더링 주기에서 다시 활성화
   };
 
   return (
@@ -67,6 +98,10 @@ const WhiteBoard = () => {
         handleToolChange={setTool}
         tool={tool}
         canvas={canvasRef.current}
+      />
+      <UndoRedoTool
+        canvas={canvasRef.current}
+        handleUndoRedo={handleUndoRedo}
       />
       <canvas
         id='canvas'
@@ -78,4 +113,3 @@ const WhiteBoard = () => {
 };
 
 export default WhiteBoard;
-
