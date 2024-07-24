@@ -1,11 +1,12 @@
 import { atom } from 'recoil';
 
-export const historyState = atom<fabric.Object[]>({
+export const historyState = atom<fabric.Object[] | undefined>({
   key: 'historyState',
   default: [],
+  dangerouslyAllowMutability: true,
 });
 
-export const historyIndexState = atom<number>({
-  key: 'historyIndexState',
-  default: 0,
+export const historyIsLocked = atom<boolean>({
+  key: 'historyIsLocked',
+  default: false,
 });
