@@ -22,7 +22,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       if (e.key === 'Alt') {
         canvas.isDrawingMode = false;
         Tool.panning.enable(canvas);
-      } else if (e.key === 'Backspace' || e.key === 'delete') {
+      } else if (e.key === 'delete') {
         const activeObject = canvas.getActiveObject();
         if (activeObject) {
           canvas.remove(activeObject);
@@ -68,6 +68,9 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       case 'circle':
         removeListeners = Tool.shapes.circle(canvas);
         break;
+      case 'text':
+        removeListeners = Tool.text.enabletext(canvas);
+        break;
       default:
         Tool.selection.disable(canvas);
         break;
@@ -95,6 +98,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       <button onClick={() => handleButtonClick('rectangle')}>사각형</button>
       <button onClick={() => handleButtonClick('triangle')}>삼각형</button>
       <button onClick={() => handleButtonClick('circle')}>원형</button>
+      <button onClick={() => handleButtonClick('text')}>텍스트</button>
     </div>
   );
 };

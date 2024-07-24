@@ -9,9 +9,14 @@ import {
   disablePanning,
 } from '@/app/painting/_component/_utils/panningTool';
 import { ShapeTool } from './shapesTool';
+import { enableTextTool } from './textTool';
 
 export const Pen = {
   basic: basicPen,
+};
+
+export const Text = {
+  enabletext: enableTextTool,
 };
 
 export const Selection = {
@@ -35,4 +40,5 @@ export const Tool = {
   selection: Selection,
   panning: Panning,
   shapes: Shapes,
+  text: Text,
 };
