@@ -35,8 +35,15 @@ export const UndoRedoTool: React.FC<{ canvas: fabric.Canvas | null }> = ({
 
   return (
     <div>
-      <button onClick={handleUndoClick}>Undo</button>
-      <button onClick={handleRedoClick}>Redo</button>
+      <button
+        onClick={handleUndoClick}
+        disabled={!canvas || canvas.getObjects().length === 0}
+      >
+        Undo
+      </button>
+      <button onClick={handleRedoClick} disabled={history?.length === 0}>
+        Redo
+      </button>
     </div>
   );
 };
