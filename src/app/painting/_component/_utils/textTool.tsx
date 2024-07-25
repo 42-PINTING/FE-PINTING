@@ -31,9 +31,13 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
   const handleMouseMove = (e: fabric.IEvent) => {
     if (!isDown || !rect) return;
     const pointer = canvas.getPointer(e.e);
+    if (pointer.x < origX) {
+      rect.set({ left: pointer.x });
+    }
+    if (pointer.y < origY) {
+      rect.set({ top: pointer.y });
+    }
     rect.set({
-      left: Math.min(origX, pointer.x),
-      top: Math.min(origY, pointer.y),
       width: Math.abs(origX - pointer.x),
       height: Math.abs(origY - pointer.y),
     });
@@ -47,7 +51,6 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
       const height = Math.abs(origY - pointer.y);
 
       if (width > 10 && height > 10) {
-        // 드래그한 경우
         const textbox = new fabric.Textbox('Edit Me', {
           left: rect.left,
           top: rect.top,
@@ -68,7 +71,6 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
       canvas.renderAll();
       rect = null;
     }
-
     isDown = false;
   };
 
