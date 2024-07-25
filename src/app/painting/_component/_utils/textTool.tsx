@@ -51,7 +51,6 @@ export const enableTextTool = (canvas: fabric.Canvas) => {
       const height = Math.abs(origY - pointer.y);
 
       if (width > 10 && height > 10) {
-        // 최소 크기 조건 추가
         const textbox = new fabric.Textbox('Edit Me', {
           left: rect.left,
           top: rect.top,

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { fabric } from 'fabric';
 import { SwitchTool } from './_utils/switchTool';
 import { useRecoilState } from 'recoil';
