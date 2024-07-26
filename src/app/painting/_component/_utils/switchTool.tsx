@@ -15,7 +15,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
 }) => {
   const [brushWidth, setBrushWidth] = useState(2);
   const [brushColor, setBrushColor] = useState('black');
-
+  const [strokeColor, setStrokeColor] = useState('black');
   const [strokeWidth, setStrokeWidth] = useState(2);
 
   useEffect(() => {
@@ -67,21 +67,21 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       case 'rectangle':
         removeListeners = Tool.shapes.rectangle.enable(
           canvas,
-
+          strokeColor,
           strokeWidth
         );
         break;
       case 'triangle':
         removeListeners = Tool.shapes.triangle.enable(
           canvas,
-
+          strokeColor,
           strokeWidth
         );
         break;
       case 'circle':
         removeListeners = Tool.shapes.circle.enable(
           canvas,
-
+          strokeColor,
           strokeWidth
         );
         break;
@@ -100,7 +100,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [tool, canvas, brushWidth, brushColor, strokeWidth]);
+  }, [tool, canvas, brushWidth, brushColor, strokeColor, strokeWidth]);
 
   const handleButtonClick = (selectedTool: string) => {
     handleToolChange(selectedTool);
@@ -137,6 +137,8 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
           setBrushWidth={setBrushWidth}
           brushColor={brushColor}
           setBrushColor={setBrushColor}
+          strokeColor={strokeColor}
+          setStrokeColor={setStrokeColor}
           strokeWidth={strokeWidth}
           setStrokeWidth={setStrokeWidth}
         />
