@@ -14,6 +14,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
   canvas,
 }) => {
   const [brushWidth, setBrushWidth] = useState(2);
+  const [brushColor, setBrushColor] = useState('black');
 
   useEffect(() => {
     if (!canvas) return;
@@ -48,7 +49,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
     switch (tool) {
       case 'pen':
         Tool.selection.disable(canvas);
-        removeListeners = Tool.pen.basic(canvas, brushWidth);
+        removeListeners = Tool.pen.basic(canvas, brushWidth, brushColor);
         break;
       case 'test':
         canvas.selection = false;
@@ -85,7 +86,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [tool, canvas, brushWidth]);
+  }, [tool, canvas, brushWidth, brushColor]);
 
   const handleButtonClick = (selectedTool: string) => {
     handleToolChange(selectedTool);
@@ -109,6 +110,8 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
           canvas={canvas}
           brushWidth={brushWidth}
           setBrushWidth={setBrushWidth}
+          brushColor={brushColor}
+          setBrushColor={setBrushColor}
         />
       )}
     </div>
