@@ -1,5 +1,8 @@
 'use client';
-import { basicPen } from '@/app/painting/_component/_utils/penTool';
+import {
+  basicPen,
+  PenSettings,
+} from '@/app/painting/_component/_utils/penTool';
 import {
   enableSelection,
   disableSelection,
@@ -13,6 +16,7 @@ import { enableTextTool } from './textTool';
 
 export const Pen = {
   basic: basicPen,
+  settings: PenSettings,
 };
 
 export const Text = {
