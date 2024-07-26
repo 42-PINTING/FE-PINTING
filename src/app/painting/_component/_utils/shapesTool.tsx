@@ -2,7 +2,9 @@ import { fabric } from 'fabric';
 
 const startDrawingShape = (
   canvas: fabric.Canvas,
-  createShape: (pointer: fabric.Point) => fabric.Object
+  createShape: (pointer: fabric.Point, strokeWidth: number) => fabric.Object,
+
+  strokeWidth: number
 ) => {
   let isDrawing = false;
   let shape: fabric.Object | null = null;
@@ -10,7 +12,7 @@ const startDrawingShape = (
   const startDrawing = (opt: fabric.IEvent) => {
     const pointer = canvas.getPointer(opt.e) as fabric.Point;
     isDrawing = true;
-    shape = createShape(pointer);
+    shape = createShape(pointer, strokeWidth);
     canvas.add(shape);
   };
 
@@ -44,46 +46,102 @@ const startDrawingShape = (
   };
 };
 
+interface ShapeSettingsProps {
+  strokeWidth: number;
+  setStrokeWidth: (width: number) => void;
+}
+
+export const ShapeSettings: React.FC<ShapeSettingsProps> = ({
+  strokeWidth,
+  setStrokeWidth,
+}) => {
+  const handleWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setStrokeWidth(Number(event.target.value));
+  };
+
+  return (
+    <div>
+      <label>테두리 색상: </label>
+
+      <label>테두리 굵기: {strokeWidth}</label>
+      <input
+        type='range'
+        min='1'
+        max='10'
+        value={strokeWidth}
+        onChange={handleWidthChange}
+      />
+    </div>
+  );
+};
+
 export const ShapeTool = {
-  enableRectangle: (canvas: fabric.Canvas) => {
-    return startDrawingShape(canvas, (pointer) => {
-      return new fabric.Rect({
-        left: pointer.x,
-        top: pointer.y,
-        width: 0,
-        height: 0,
-        fill: 'transparent',
-        stroke: 'black',
-        strokeWidth: 2,
-        selectable: true,
-      });
-    });
+  enableRectangle: (
+    canvas: fabric.Canvas,
+
+    strokeWidth: number
+  ) => {
+    return startDrawingShape(
+      canvas,
+      (pointer) => {
+        return new fabric.Rect({
+          left: pointer.x,
+          top: pointer.y,
+          width: 0,
+          height: 0,
+          fill: 'transparent',
+          stroke: 'black',
+          strokeWidth: strokeWidth,
+          selectable: true,
+        });
+      },
+
+      strokeWidth
+    );
   },
-  enableTriangle: (canvas: fabric.Canvas) => {
-    return startDrawingShape(canvas, (pointer) => {
-      return new fabric.Triangle({
-        left: pointer.x,
-        top: pointer.y,
-        width: 0,
-        height: 0,
-        fill: 'transparent',
-        stroke: 'black',
-        strokeWidth: 2,
-        selectable: true,
-      });
-    });
+  enableTriangle: (
+    canvas: fabric.Canvas,
+
+    strokeWidth: number
+  ) => {
+    return startDrawingShape(
+      canvas,
+      (pointer) => {
+        return new fabric.Triangle({
+          left: pointer.x,
+          top: pointer.y,
+          width: 0,
+          height: 0,
+          fill: 'transparent',
+          stroke: 'black',
+          strokeWidth: strokeWidth,
+          selectable: true,
+        });
+      },
+
+      strokeWidth
+    );
   },
-  enableCircle: (canvas: fabric.Canvas) => {
-    return startDrawingShape(canvas, (pointer) => {
-      return new fabric.Circle({
-        left: pointer.x,
-        top: pointer.y,
-        radius: 0,
-        fill: 'transparent',
-        stroke: 'black',
-        strokeWidth: 2,
-        selectable: true,
-      });
-    });
+  enableCircle: (
+    canvas: fabric.Canvas,
+
+    strokeWidth: number
+  ) => {
+    return startDrawingShape(
+      canvas,
+      (pointer) => {
+        return new fabric.Circle({
+          left: pointer.x,
+          top: pointer.y,
+          radius: 0,
+          fill: 'transparent',
+          stroke: 'black',
+          strokeWidth: strokeWidth,
+          selectable: true,
+        });
+      },
+
+      strokeWidth
+    );
   },
 };
