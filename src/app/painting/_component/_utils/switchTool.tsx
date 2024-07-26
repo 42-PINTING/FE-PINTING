@@ -16,6 +16,8 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
   const [brushWidth, setBrushWidth] = useState(2);
   const [brushColor, setBrushColor] = useState('black');
 
+  const [strokeWidth, setStrokeWidth] = useState(2);
+
   useEffect(() => {
     if (!canvas) return;
 
@@ -63,13 +65,25 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
         removeListeners = Tool.panning.enable(canvas);
         break;
       case 'rectangle':
-        removeListeners = Tool.shapes.rectangle(canvas);
+        removeListeners = Tool.shapes.rectangle.enable(
+          canvas,
+
+          strokeWidth
+        );
         break;
       case 'triangle':
-        removeListeners = Tool.shapes.triangle(canvas);
+        removeListeners = Tool.shapes.triangle.enable(
+          canvas,
+
+          strokeWidth
+        );
         break;
       case 'circle':
-        removeListeners = Tool.shapes.circle(canvas);
+        removeListeners = Tool.shapes.circle.enable(
+          canvas,
+
+          strokeWidth
+        );
         break;
       case 'text':
         removeListeners = Tool.text.enabletext(canvas);
@@ -86,13 +100,24 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [tool, canvas, brushWidth, brushColor]);
+  }, [tool, canvas, brushWidth, brushColor, strokeWidth]);
 
   const handleButtonClick = (selectedTool: string) => {
     handleToolChange(selectedTool);
   };
 
-  const SettingsComponent = tool === 'pen' ? Tool.pen.settings : null;
+  const SettingsComponent = (() => {
+    if (tool === 'pen') {
+      return Tool.pen.settings;
+    } else if (
+      tool === 'rectangle' ||
+      tool === 'triangle' ||
+      tool === 'circle'
+    ) {
+      return Tool.shapes[tool as keyof typeof Tool.shapes].settings;
+    }
+    return null;
+  })();
 
   return (
     <div>
@@ -112,6 +137,8 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
           setBrushWidth={setBrushWidth}
           brushColor={brushColor}
           setBrushColor={setBrushColor}
+          strokeWidth={strokeWidth}
+          setStrokeWidth={setStrokeWidth}
         />
       )}
     </div>
