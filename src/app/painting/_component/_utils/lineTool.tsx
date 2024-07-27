@@ -9,9 +9,9 @@ export const enableLineTool = (
   let line: fabric.Line | null = null;
   let isDrawing = false;
 
-  const startDrawing = (options: fabric.IEvent<MouseEvent>) => {
+  const startDrawing = (options: fabric.IEvent) => {
     isDrawing = true;
-    const pointer = canvas.getPointer(options.e);
+    const pointer = canvas.getPointer(options.e) as fabric.Point;
     const points = [pointer.x, pointer.y, pointer.x, pointer.y];
     line = new fabric.Line(points, {
       strokeWidth,
@@ -23,10 +23,10 @@ export const enableLineTool = (
     canvas.add(line);
   };
 
-  const drawing = (options: fabric.IEvent<MouseEvent>) => {
+  const drawing = (options: fabric.IEvent) => {
     if (!isDrawing || !line) return;
 
-    const pointer = canvas.getPointer(options.e);
+    const pointer = canvas.getPointer(options.e) as fabric.Point;
     line.set({ x2: pointer.x, y2: pointer.y });
     canvas.requestRenderAll();
   };
