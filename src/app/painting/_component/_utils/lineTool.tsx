@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import { fabric } from 'fabric';
 
-export const enableLineTool = (canvas: fabric.Canvas, strokeWidth: number) => {
+export const enableLineTool = (
+  canvas: fabric.Canvas,
+  strokeWidth: number,
+  strokeColor: string
+) => {
   let line: fabric.Line | null = null;
   let isDrawing = false;
 
@@ -11,8 +15,8 @@ export const enableLineTool = (canvas: fabric.Canvas, strokeWidth: number) => {
     const points = [pointer.x, pointer.y, pointer.x, pointer.y];
     line = new fabric.Line(points, {
       strokeWidth,
-      stroke: 'black',
-      fill: 'black',
+      stroke: strokeColor,
+      fill: strokeColor,
       originX: 'center',
       originY: 'center',
     });
@@ -47,23 +51,34 @@ interface LineSettingsProps {
   canvas: fabric.Canvas | null;
   strokeWidth: number;
   setStrokeWidth: (width: number) => void;
+  strokeColor: string;
+  setStrokeColor: (color: string) => void;
 }
 
 export const LineSettings: React.FC<LineSettingsProps> = ({
   canvas,
   strokeWidth,
   setStrokeWidth,
+  strokeColor,
+  setStrokeColor,
 }) => {
   useEffect(() => {
     if (canvas) {
       canvas.freeDrawingBrush.width = strokeWidth;
+      canvas.freeDrawingBrush.color = strokeColor;
     }
-  }, [canvas, strokeWidth]);
+  }, [canvas, strokeWidth, strokeColor]);
 
   const handleStrokeWidthChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setStrokeWidth(Number(event.target.value));
+  };
+
+  const handleStrokeColorChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setStrokeColor(event.target.value);
   };
 
   return (
@@ -75,6 +90,12 @@ export const LineSettings: React.FC<LineSettingsProps> = ({
         max='10'
         value={strokeWidth}
         onChange={handleStrokeWidthChange}
+      />
+      <label>색상: </label>
+      <input
+        type='color'
+        value={strokeColor}
+        onChange={handleStrokeColorChange}
       />
     </div>
   );
