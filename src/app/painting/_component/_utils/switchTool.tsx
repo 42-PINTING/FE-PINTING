@@ -88,6 +88,9 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       case 'text':
         removeListeners = Tool.text.enabletext(canvas);
         break;
+      case 'line':
+        removeListeners = Tool.line.basic(canvas);
+        break;
       default:
         Tool.selection.disable(canvas);
         break;
@@ -128,6 +131,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       <button onClick={() => handleButtonClick('rectangle')}>사각형</button>
       <button onClick={() => handleButtonClick('triangle')}>삼각형</button>
       <button onClick={() => handleButtonClick('circle')}>원형</button>
+      <button onClick={() => handleButtonClick('line')}>선</button>
       <button onClick={() => handleButtonClick('text')}>텍스트</button>
 
       {SettingsComponent && (
