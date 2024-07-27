@@ -89,7 +89,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
         removeListeners = Tool.text.enabletext(canvas);
         break;
       case 'line':
-        removeListeners = Tool.line.basic(canvas);
+        removeListeners = Tool.line.basic(canvas, strokeWidth, strokeColor);
         break;
       default:
         Tool.selection.disable(canvas);
@@ -118,6 +118,8 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       tool === 'circle'
     ) {
       return Tool.shapes[tool as keyof typeof Tool.shapes].settings;
+    } else if (tool === 'line') {
+      return Tool.line.settings;
     }
     return null;
   })();
