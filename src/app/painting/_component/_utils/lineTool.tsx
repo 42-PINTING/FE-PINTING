@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
 import { fabric } from 'fabric';
 
-export const enableLineTool = (canvas: fabric.Canvas) => {
+export const enableLineTool = (canvas: fabric.Canvas, strokeWidth: number) => {
   let line: fabric.Line | null = null;
   let isDrawing = false;
 
@@ -9,9 +10,9 @@ export const enableLineTool = (canvas: fabric.Canvas) => {
     const pointer = canvas.getPointer(options.e);
     const points = [pointer.x, pointer.y, pointer.x, pointer.y];
     line = new fabric.Line(points, {
-      strokeWidth: 2,
-      fill: 'black',
+      strokeWidth,
       stroke: 'black',
+      fill: 'black',
       originX: 'center',
       originY: 'center',
     });
@@ -22,10 +23,7 @@ export const enableLineTool = (canvas: fabric.Canvas) => {
     if (!isDrawing || !line) return;
 
     const pointer = canvas.getPointer(options.e);
-    line.set({
-      x2: pointer.x,
-      y2: pointer.y,
-    });
+    line.set({ x2: pointer.x, y2: pointer.y });
     canvas.requestRenderAll();
   };
 
@@ -43,4 +41,41 @@ export const enableLineTool = (canvas: fabric.Canvas) => {
     canvas.off('mouse:move', drawing);
     canvas.off('mouse:up', finishDrawing);
   };
+};
+
+interface LineSettingsProps {
+  canvas: fabric.Canvas | null;
+  strokeWidth: number;
+  setStrokeWidth: (width: number) => void;
+}
+
+export const LineSettings: React.FC<LineSettingsProps> = ({
+  canvas,
+  strokeWidth,
+  setStrokeWidth,
+}) => {
+  useEffect(() => {
+    if (canvas) {
+      canvas.freeDrawingBrush.width = strokeWidth;
+    }
+  }, [canvas, strokeWidth]);
+
+  const handleStrokeWidthChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setStrokeWidth(Number(event.target.value));
+  };
+
+  return (
+    <div>
+      <label>선 굵기: {strokeWidth}</label>
+      <input
+        type='range'
+        min='1'
+        max='10'
+        value={strokeWidth}
+        onChange={handleStrokeWidthChange}
+      />
+    </div>
+  );
 };
