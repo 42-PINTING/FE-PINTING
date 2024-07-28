@@ -13,7 +13,7 @@ import {
 } from '@/app/painting/_component/_utils/panningTool';
 import { ShapeTool, ShapeSettings } from './shapesTool';
 import { enableTextTool } from './textTool';
-import { enableLineTool } from './lineTool';
+import { enableLineTool, LineSettings } from './lineTool';
 
 export const Pen = {
   basic: basicPen,
@@ -51,6 +51,7 @@ export const Shapes = {
 
 export const Line = {
   basic: enableLineTool,
+  settings: LineSettings,
 };
 
 export const Tool = {
