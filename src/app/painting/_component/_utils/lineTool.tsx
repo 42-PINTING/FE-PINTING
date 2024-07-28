@@ -27,7 +27,10 @@ export const enableLineTool = (
     if (!isDrawing || !line) return;
 
     const pointer = canvas.getPointer(options.e) as fabric.Point;
-    line.set({ x2: pointer.x, y2: pointer.y });
+    line.set({
+      x2: pointer.x,
+      y2: pointer.y,
+    });
     canvas.requestRenderAll();
   };
 
