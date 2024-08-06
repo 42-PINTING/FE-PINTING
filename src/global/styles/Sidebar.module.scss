@@ -1,7 +1,7 @@
 $Width: 12%;
 
 .line {
-  border-right: 1px solid #c3ff0000;
+  border: 1px solid #e7e7e7;
   margin: 20px 0;
   width: 100%;
 }
@@ -57,7 +57,7 @@ $Width: 12%;
 
 .attendanceBox {
   display: flex;
-  background-color: rgba(173, 173, 173, 0.266);
+  background-color: rgba(173, 173, 173, 0.166);
   flex-direction: column;
   justify-content: center;
   align-items: center;

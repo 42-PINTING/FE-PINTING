@@ -31,7 +31,7 @@ const navPersonalItems: NavItemProps = [
 const navCoItems = [
   {
     href: '/coDrawing',
-    text: '공유 그림',
+    text: '내 그림',
     icon: <FaSlideshare color='#008000' />,
   },
 ];
