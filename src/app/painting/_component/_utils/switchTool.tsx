@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Tool } from '@/app/painting/_component/_utils/toolIndex';
+import styles from '../../_styles/whiteBoard.module.scss';
 
 interface SwitchToolProps {
   handleToolChange: (tool: string) => void;
@@ -126,15 +127,17 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
 
   return (
     <div>
-      <button onClick={() => handleButtonClick('pen')}>펜</button>
-      <button onClick={() => handleButtonClick('test')}>test</button>
-      <button onClick={() => handleButtonClick('select')}>선택</button>
-      <button onClick={() => handleButtonClick('panning')}>이동</button>
-      <button onClick={() => handleButtonClick('rectangle')}>사각형</button>
-      <button onClick={() => handleButtonClick('triangle')}>삼각형</button>
-      <button onClick={() => handleButtonClick('circle')}>원형</button>
-      <button onClick={() => handleButtonClick('line')}>선</button>
-      <button onClick={() => handleButtonClick('text')}>텍스트</button>
+      <div className={styles.switchMargin}>
+      <a className={styles.switchPen} onClick={() => handleButtonClick('pen')}></a>
+      <a className={styles.switchIcon} onClick={() => handleButtonClick('test')}></a>
+      <a className={styles.switchSelect} onClick={() => handleButtonClick('select')}></a>
+      <a className={styles.switchMove} onClick={() => handleButtonClick('panning')}></a>
+      <a className={styles.switchRectangle} onClick={() => handleButtonClick('rectangle')}></a>
+      <a className={styles.switchAngle} onClick={() => handleButtonClick('triangle')}></a>
+      <a className={styles.switchCircle} onClick={() => handleButtonClick('circle')}></a>
+      <a className={styles.switchLine} onClick={() => handleButtonClick('line')}></a>
+      <a className={styles.switchText} onClick={() => handleButtonClick('text')}></a>
+      </div>
 
       {SettingsComponent && (
         <SettingsComponent

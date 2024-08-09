@@ -12,17 +12,17 @@ const titleColor = [
 ];
 
 const basic = () => {
-  const title = 'PINTING';
+  const title = 'Pinting';
 
   return (
     <Link href='/' className={styles.TitleLink}>
-      <h1>
+      <h3>
         {title.split('').map((char, index) => (
           <span key={char + index} style={{ color: titleColor[index] }}>
             {char}
           </span>
         ))}
-      </h1>
+      </h3>
     </Link>
   );
 };

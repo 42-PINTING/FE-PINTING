@@ -24,7 +24,7 @@ const navPersonalItems: NavItemProps = [
   {
     href: '/',
     text: '그림 편지',
-    icon: <BsEnvelopePaperHeart color='orange' />,
+    icon: <BsEnvelopePaperHeart color='#3F3F3F' />,
   },
 ];
 
@@ -32,7 +32,7 @@ const navCoItems = [
   {
     href: '/coDrawing',
     text: '내 그림',
-    icon: <FaSlideshare color='#008000' />,
+    icon: <FaSlideshare color='#3F3F3F' />,
   },
 ];
 
@@ -83,7 +83,7 @@ function NavPrivateItems({ nickname }: { nickname: string | undefined }) {
       text: '프로필',
       icon: <FaUser color='gray' />,
     },
-  ];
+];
 
   if (nickname) {
     privateItems[0].href = `/profile/${nickname}`;

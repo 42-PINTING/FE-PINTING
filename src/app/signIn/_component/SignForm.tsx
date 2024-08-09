@@ -34,7 +34,7 @@ export default function SignForm() {
       <div className={styles.signBtnGroup}>
         <input className={styles.signBtn} type='submit' value='로그인' />
         <Link href='/signUp' className='styles.signBtn' style={{textDecoration: 'none', 
- padding:'24px 0px', background:'#4C4C4C', color:'#ffffff', borderRadius:'12px', width:'50%', textAlign:'center', fontSize:'14px'}}>
+ padding:'24px 0px', border:'1px solid #E5E5E5', color:'#373737', borderRadius:'12px', width:'50%', textAlign:'center', fontSize:'14px'}}>
           회원가입
         </Link>
       </div>
