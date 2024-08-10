@@ -54,15 +54,12 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
         Tool.selection.disable(canvas);
         removeListeners = Tool.pen.basic(canvas, brushWidth, brushColor);
         break;
-      case 'test':
-        canvas.selection = false;
-        Tool.selection.disable(canvas);
-        canvas.isDrawingMode = false;
-        break;
       case 'select':
+        console.log("select");
         removeListeners = Tool.selection.enable(canvas);
         break;
       case 'panning':
+        console.log("123123123");
         removeListeners = Tool.panning.enable(canvas);
         break;
       case 'rectangle':
@@ -129,8 +126,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
     <div>
       <div className={styles.switchMargin}>
       <a className={styles.switchPen} onClick={() => handleButtonClick('pen')}></a>
-      <a className={styles.switchIcon} onClick={() => handleButtonClick('test')}></a>
-      <a className={styles.switchSelect} onClick={() => handleButtonClick('select')}></a>
+      <a className={styles.switchIcon} onClick={() => handleButtonClick('select')}></a>
       <a className={styles.switchMove} onClick={() => handleButtonClick('panning')}></a>
       <a className={styles.switchRectangle} onClick={() => handleButtonClick('rectangle')}></a>
       <a className={styles.switchAngle} onClick={() => handleButtonClick('triangle')}></a>
