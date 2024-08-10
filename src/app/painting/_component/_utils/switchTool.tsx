@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tool } from '@/app/painting/_component/_utils/toolIndex';
 
 interface SwitchToolProps {
@@ -13,6 +13,11 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
   tool,
   canvas,
 }) => {
+  const [brushWidth, setBrushWidth] = useState(2);
+  const [brushColor, setBrushColor] = useState('black');
+  const [strokeColor, setStrokeColor] = useState('black');
+  const [strokeWidth, setStrokeWidth] = useState(2);
+
   useEffect(() => {
     if (!canvas) return;
 
@@ -22,7 +27,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       if (e.key === 'Alt') {
         canvas.isDrawingMode = false;
         Tool.panning.enable(canvas);
-      } else if (e.key === 'Backspace' || e.key === 'delete') {
+      } else if (e.key === 'delete') {
         const activeObject = canvas.getActiveObject();
         if (activeObject) {
           canvas.remove(activeObject);
@@ -46,7 +51,7 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
     switch (tool) {
       case 'pen':
         Tool.selection.disable(canvas);
-        removeListeners = Tool.pen.basic(canvas);
+        removeListeners = Tool.pen.basic(canvas, brushWidth, brushColor);
         break;
       case 'test':
         canvas.selection = false;
@@ -60,13 +65,31 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
         removeListeners = Tool.panning.enable(canvas);
         break;
       case 'rectangle':
-        removeListeners = Tool.shapes.rectangle(canvas);
+        removeListeners = Tool.shapes.rectangle.enable(
+          canvas,
+          strokeColor,
+          strokeWidth
+        );
         break;
       case 'triangle':
-        removeListeners = Tool.shapes.triangle(canvas);
+        removeListeners = Tool.shapes.triangle.enable(
+          canvas,
+          strokeColor,
+          strokeWidth
+        );
         break;
       case 'circle':
-        removeListeners = Tool.shapes.circle(canvas);
+        removeListeners = Tool.shapes.circle.enable(
+          canvas,
+          strokeColor,
+          strokeWidth
+        );
+        break;
+      case 'text':
+        removeListeners = Tool.text.enabletext(canvas);
+        break;
+      case 'line':
+        removeListeners = Tool.line.basic(canvas, strokeWidth, strokeColor);
         break;
       default:
         Tool.selection.disable(canvas);
@@ -80,11 +103,26 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [tool, canvas]);
+  }, [tool, canvas, brushWidth, brushColor, strokeColor, strokeWidth]);
 
   const handleButtonClick = (selectedTool: string) => {
     handleToolChange(selectedTool);
   };
+
+  const SettingsComponent = (() => {
+    if (tool === 'pen') {
+      return Tool.pen.settings;
+    } else if (
+      tool === 'rectangle' ||
+      tool === 'triangle' ||
+      tool === 'circle'
+    ) {
+      return Tool.shapes[tool as keyof typeof Tool.shapes].settings;
+    } else if (tool === 'line') {
+      return Tool.line.settings;
+    }
+    return null;
+  })();
 
   return (
     <div>
@@ -95,6 +133,22 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
       <button onClick={() => handleButtonClick('rectangle')}>사각형</button>
       <button onClick={() => handleButtonClick('triangle')}>삼각형</button>
       <button onClick={() => handleButtonClick('circle')}>원형</button>
+      <button onClick={() => handleButtonClick('line')}>선</button>
+      <button onClick={() => handleButtonClick('text')}>텍스트</button>
+
+      {SettingsComponent && (
+        <SettingsComponent
+          canvas={canvas}
+          brushWidth={brushWidth}
+          setBrushWidth={setBrushWidth}
+          brushColor={brushColor}
+          setBrushColor={setBrushColor}
+          strokeColor={strokeColor}
+          setStrokeColor={setStrokeColor}
+          strokeWidth={strokeWidth}
+          setStrokeWidth={setStrokeWidth}
+        />
+      )}
     </div>
   );
 };

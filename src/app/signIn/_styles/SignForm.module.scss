@@ -1,29 +1,43 @@
+
+
 .signInForm {
   display: flex;
-  font-size: 1.3em;
+  font-size: 20px;
   flex-wrap: wrap;
   flex-direction: column;
   width: 100%;
+  margin-bottom:16px;
 }
+
+
 
 $commonWidth: 100%;
 $commonHeight: 20%;
 $commonFontSize: 1.2rem;
 
-%label {
+
+
+
+%labelsmall {
   display: flex;
   height: $commonHeight;
   width: $commonWidth;
-  font-size: $commonFontSize;
+  font-size: 16px;
 }
 
 %input {
   display: flex;
   height: $commonHeight;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 16px;
+  border: 1px solid #c4c4c4;
 }
 
+
+
 .emailLabel {
-  @extend %label;
+  @extend %labelsmall;
 }
 
 .emailInput {
@@ -31,7 +45,7 @@ $commonFontSize: 1.2rem;
 }
 
 .passwordLabel {
-  @extend %label;
+  @extend %labelsmall;
 }
 
 .passwordInput {
@@ -42,12 +56,17 @@ $commonFontSize: 1.2rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding: 16px 0px;
 }
 
 .signBtn {
   display: block;
   border: 0;
-  padding: 0;
+  padding: 24px 0px;
   text-align: center;
   width: 48%;
+  background-color: #FF7272;
+  color:aliceblue;
+  border-radius: 12px;
+  
 }

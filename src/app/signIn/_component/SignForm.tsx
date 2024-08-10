@@ -9,6 +9,9 @@ export default function SignForm() {
       method='post'
       className={styles.signInForm}
     >
+       <label htmlFor='email' className={styles.signInForm}>
+       핀팅에서 매일 함께 그림일기를 쓰고 안정감을 느껴보세요
+      </label>
       <label htmlFor='email' className={styles.emailLabel}>
         이메일
       </label>
@@ -30,8 +33,9 @@ export default function SignForm() {
       />
       <div className={styles.signBtnGroup}>
         <input className={styles.signBtn} type='submit' value='로그인' />
-        <Link href='/signUp' className='styles.signBtn'>
-          signUp
+        <Link href='/signUp' className='styles.signBtn' style={{textDecoration: 'none', 
+ padding:'24px 0px', background:'#4C4C4C', color:'#ffffff', borderRadius:'12px', width:'50%', textAlign:'center', fontSize:'14px'}}>
+          회원가입
         </Link>
       </div>
     </form>
