@@ -2,6 +2,7 @@ import React from 'react';
 import { fabric } from 'fabric';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { historyState, historyIsLocked } from '../../_atoms/canvasAtoms';
+import styles from '../../_styles/whiteBoard.module.scss';
 
 export const UndoRedoTool: React.FC<{ canvas: fabric.Canvas | null }> = ({
   canvas,
@@ -38,11 +39,13 @@ export const UndoRedoTool: React.FC<{ canvas: fabric.Canvas | null }> = ({
       <button
         onClick={handleUndoClick}
         disabled={!canvas || canvas.getObjects().length === 0}
+        className={styles.switchStyle}
       >
-        Undo
+        되돌리기
       </button>
-      <button onClick={handleRedoClick} disabled={history?.length === 0}>
-        Redo
+      <button onClick={handleRedoClick} disabled={history?.length === 0}
+        className={styles.switchStyle}>
+        앞으로
       </button>
     </div>
   );

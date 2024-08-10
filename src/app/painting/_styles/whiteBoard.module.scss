@@ -1,0 +1,87 @@
+.paperBackground{
+    background: #E2E5E9;
+}
+
+.switchPanel{
+    color:#EFEFEF;
+    width: 80%;
+    height: 16%;
+    background-color: #2B2B2B;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    
+}
+
+.canvasSet {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    margin-left: 15%;
+}
+
+.switchStyle{
+    background: none;
+    border: none;
+    border-radius: 32px;
+    color: #EFEFEF;
+  padding-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.switchPen::before{
+    content: url("../../../../public/img/Pen.svg");
+    background: 'none';
+    border: none;
+    border-radius: 32px;
+    color: #EFEFEF;
+    
+  }
+
+.switchIcon::before{
+  content: url("../../../../public/img/Select.svg");
+  padding:36px;
+}
+
+.switchMove::before{
+    content: url("../../../../public/img/Move.svg");
+    padding:36px;
+  }
+
+.switchRectangle::before{
+    content: url("../../../../public/img/Rectangle.svg");
+    padding:36px;
+
+  }
+
+.switchAngle::before{
+    content: url("../../../../public/img/Angle.svg");
+    
+    padding:36px;
+  }
+
+.switchCircle::before{
+    content: url("../../../../public/img/Circle.svg");
+    padding:36px;
+  }
+
+.switchLine::before{
+    content: url("../../../../public/img/Line.svg");
+    padding:36px;
+  }
+
+.switchText::before{
+    content: url("../../../../public/img/Text.svg");
+    padding:36px;
+  }
+
+.switchMargin{
+    margin-top: 20px;
+    margin-left:40px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: last baseline;
+    
+}

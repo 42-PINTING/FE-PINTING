@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { toolState } from '../_atoms/penAtoms';
 import { historyState, historyIsLocked } from '../_atoms/canvasAtoms';
 import { UndoRedoTool } from './_utils/undoRedoTool';
+import styles from '../_styles/whiteBoard.module.scss';
 
 const WhiteBoard = () => {
   const fabricRef = useRef<HTMLCanvasElement | null>(null);
@@ -16,7 +17,7 @@ const WhiteBoard = () => {
 
   const setCanvasSize = (canvas: fabric.Canvas) => {
     const width = (window.innerWidth * 2) / 3;
-    const height = (window.innerHeight * 2) / 3;
+    const height = (window.innerHeight * 2.36) / 3;
     canvas.setWidth(width);
     canvas.setHeight(height);
   };
@@ -92,16 +93,20 @@ const WhiteBoard = () => {
 
   return (
     <>
+    <div className={styles.switchPanel}>
       <SwitchTool
         handleToolChange={setTool}
         tool={tool}
         canvas={canvasRef.current}
+    
       />
+     
       <UndoRedoTool canvas={canvasRef.current} />
-      <canvas
+      </div>
+      <canvas className={styles.canvasSet}
         id='canvas'
         ref={fabricRef}
-        style={{ border: '1px solid black' }}
+        style={{ border: '1px solid black', borderRadius:'8px' }}
       ></canvas>
     </>
   );

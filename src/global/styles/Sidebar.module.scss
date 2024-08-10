@@ -1,8 +1,8 @@
-$Width: 12%;
+$Width: 9%;
 
 .line {
-  border: 1px solid #e7e7e7;
-  margin: 20px 0;
+  border: 1px solid #ffffff;
+  margin: 24px 0;
   width: 100%;
 }
 
@@ -27,7 +27,7 @@ $Width: 12%;
 }
 
 .list {
-  margin: 0;
+  margin: 16;
   border: 0;
   padding: 0;
   display: flex;
@@ -53,6 +53,7 @@ $Width: 12%;
 
 .itemText {
   font-size: medium;
+  padding-top: 10px;
 }
 
 .attendanceBox {
@@ -64,7 +65,7 @@ $Width: 12%;
   width: 80%;
   margin-top: 20px;
   padding: 10px;
-  border-radius: 25px;
+  border-radius: 8px;
 }
 
 .attendanceBoxTitle {
@@ -73,7 +74,7 @@ $Width: 12%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 25px;
+  border-radius: 8px;
 }
 
 .footer {
