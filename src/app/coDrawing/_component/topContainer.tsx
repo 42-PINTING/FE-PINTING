@@ -14,6 +14,8 @@ const titleColor = [
 function TopContainer() {
   const title = 'PINTING';
 
+  function onLoginButtonHandler() {}
+
   return (
     <div className={styles.topContainer}>
       <div className={styles.buttonContainer}>
