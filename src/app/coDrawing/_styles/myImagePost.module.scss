@@ -27,3 +27,30 @@
   padding-right: 10px;
   border-radius: 10px;
 }
+
+@media (max-width: 768px) {
+  .image {
+    width: 300px;
+    height: 200px;
+    max-width: 100%;
+  }
+
+  .timeText {
+    margin-top: 7px;
+    font-size: 7px;
+  }
+
+  .titleText {
+    font-size: 18px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
+  .hashTag {
+    margin-top: 7px;
+    font-size: 7px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 7px;
+  }
+}

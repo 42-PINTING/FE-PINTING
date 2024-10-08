@@ -6,7 +6,6 @@ export default function Painting() {
   return (
     <div className={styles.paperBackground}>
       <Sidebar>
-        <div></div>
         <WhiteBoard />
       </Sidebar>
     </div>

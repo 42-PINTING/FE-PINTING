@@ -15,9 +15,6 @@ export default function coDrawing() {
           </div>
           <div className={styles.postContainer}>
             <PostGrid />
-            {/* {DUMMY_DATA.map((data, index) => (
-              <MyImagePost key={index} data={data} />
-            ))} */}
           </div>
         </div>
       </div>
