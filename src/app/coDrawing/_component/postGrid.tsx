@@ -1,17 +1,11 @@
 import React from 'react';
 import { DUMMY_DATA } from '../_dummyImage/dummyData';
 import PostItem from '../_component/myImagePost';
-import { GetServerSideProps } from 'next';
+import styles from '../_styles/postGrid.module.scss';
 
 const PostGrid: React.FC = () => {
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '63px',
-      }}
-    >
+    <div className={styles.postGird}>
       {DUMMY_DATA.map((post) => (
         <PostItem key={post.id} post={post} />
       ))}
