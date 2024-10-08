@@ -10,7 +10,6 @@ const PostGrid: React.FC = () => {
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 1fr)',
         gap: '63px',
-        // padding: '16px',
       }}
     >
       {DUMMY_DATA.map((post) => (

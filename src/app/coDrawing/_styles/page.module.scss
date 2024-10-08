@@ -15,12 +15,18 @@
 }
 
 .drawingButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: bisque;
+  padding: 10px;
   border: none;
-  height: 50px;
+  height: 30px;
   font-size: 20px;
   font-weight: bold;
   border-radius: 10px;
+  text-decoration: none;
+  color: black;
 }
 
 .postContainer {
@@ -39,7 +45,7 @@
   }
 
   .drawingButton {
-    height: 35px;
+    height: 20px;
     font-size: 15px;
   }
 

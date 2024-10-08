@@ -1,5 +1,7 @@
 import styles from '../_styles/topContainer.module.scss';
 import { FiSearch, FiLogIn } from 'react-icons/fi';
+import Link from 'next/link';
+import { NONAME } from 'dns';
 
 const titleColor = [
   '#669CED',
@@ -30,15 +32,18 @@ function TopContainer() {
           <div className={styles.loginText}>구글 로그인</div>
         </button>
       </div>
-      <div>
+      <Link href='/' style={{ textDecoration: 'none' }}>
         <h3 className={styles.LogoStyle}>
           {title.split('').map((char, index) => (
-            <span key={char + index} style={{ color: titleColor[index] }}>
+            <span
+              key={char + index}
+              style={{ color: titleColor[index], textDecoration: 'none' }}
+            >
               {char}
             </span>
           ))}
         </h3>
-      </div>
+      </Link>
     </div>
   );
 }
