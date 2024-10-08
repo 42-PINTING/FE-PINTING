@@ -1,0 +1,55 @@
+.imageContainer {
+  flex: 1;
+  margin: 100px;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.myImageTitle {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.drawingButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: bisque;
+  padding: 10px;
+  border: none;
+  height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.postContainer {
+  display: flex;
+  margin-top: 30px;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .imageContainer {
+    margin: 80px;
+  }
+
+  .myImageTitle {
+    font-size: 30px;
+  }
+
+  .drawingButton {
+    height: 20px;
+    font-size: 15px;
+  }
+
+  .postContainer {
+    margin-top: 20px;
+  }
+}
