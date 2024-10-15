@@ -14,9 +14,11 @@
 }
 
 .profileContainer {
-  border: 1px solid lightgray;
+  //   border: 1px solid lightgray;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   width: 800px;
   border-radius: 10px;
+  padding: 20px 0 20px 0;
   margin-top: 10px;
 }
 
@@ -49,10 +51,11 @@
   flex-direction: column;
   background-color: #faede3;
   width: 500px;
-  height: 300px;
+  height: 350px;
   border-radius: 15px;
   margin-top: 135px;
   padding: 20px 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .titleContainer {
@@ -116,4 +119,39 @@
 
 .marginDay {
   margin-right: 60px;
+}
+
+.treeContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  margin-top: 30px;
+  height: 230px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.orangeContainer {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.orangeText {
+  font-size: 30px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.orangeButton {
+  width: 173px;
+  height: 59px;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 15px;
 }
