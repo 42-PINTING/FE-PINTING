@@ -1,0 +1,60 @@
+.mainContainer {
+  margin: 60px;
+}
+
+.nickname {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.profileContainer {
+  border: 1px solid lightgray;
+  width: 800px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.followerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 150px;
+}
+
+.editImage {
+  height: 15px;
+  width: 15px;
+  margin-left: 30px;
+}
+
+.postCountStyle {
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.countStyle {
+  display: flex;
+  align-items: center;
+  //   justify-content: center;
+}
+
+.contour {
+  border: none;
+  border-top: 1px solid lightgray;
+  margin-bottom: 30px;
+}
+
+.bottomTitle {
+  font-size: 20px;
+  margin: 30px;
+}
+
+.postGird {
+  margin: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}

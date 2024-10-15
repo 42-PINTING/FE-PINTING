@@ -1,0 +1,114 @@
+.topContainer {
+  display: flex;
+  background-color: rgb(243, 241, 241);
+  border: 1px solid rgb(202, 202, 202);
+  width: '100%';
+  height: 80px;
+  align-items: center;
+}
+
+.fiSearch {
+  width: 40px;
+  height: 40px;
+  margin-left: 50px;
+  margin-right: 10px;
+}
+.buttonContainer {
+  padding-right: 50px;
+}
+
+.searchArea {
+  margin: 100px;
+}
+
+.loginContainer {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 80px;
+  border: 1px solid rgb(202, 202, 202);
+}
+
+.fiLogin {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.loginButton {
+  border: none;
+  background: transparent;
+  margin-right: 80px;
+}
+
+.loginText {
+  font-size: 18px;
+}
+
+.searchButton {
+  border: none;
+  background: transparent;
+}
+
+.searchButton:hover .fiSearch {
+  color: gray;
+}
+
+.loginButton:hover {
+  color: gray;
+}
+
+.LogoStyle {
+  padding-left: 25px;
+  padding-right: 20px;
+  font-size: 30px;
+}
+
+@media (max-width: 768px) {
+  .topContainer {
+    height: 65px;
+  }
+
+  .fiSearch {
+    width: 25px;
+    height: 25px;
+    margin-left: 30px;
+    margin-right: 6px;
+  }
+
+  .buttonContainer {
+    padding-right: 35px;
+  }
+
+  .searchArea {
+    height: 20px;
+    font-size: 12px;
+    padding-left: 7px;
+    line-height: 20px;
+  }
+
+  .loginContainer {
+    height: 65px;
+  }
+
+  .fiLogin {
+    width: 25px;
+    height: 25px;
+    margin-right: 7px;
+  }
+
+  .loginButton {
+    margin-right: 7px;
+  }
+
+  .loginText {
+    font-size: 12px;
+  }
+
+  .LogoStyle {
+    padding-left: 18px;
+    padding-right: 15px;
+    font-size: 20px;
+  }
+}
