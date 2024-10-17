@@ -1,0 +1,19 @@
+.postGird {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 63px;
+}
+
+/* 화면이 1024px보다 작을 때, 그리드 열을 2개로 설정 */
+@media (max-width: 1500px) {
+  .postGird {
+    grid-template-columns: repeat(2, 1fr); /* 2개씩 표시 */
+  }
+}
+
+/* 화면이 768px보다 작을 때, 그리드 열을 1개로 설정 */
+@media (max-width: 768px) {
+  .postGird {
+    grid-template-columns: repeat(1, 1fr); /* 1개씩 표시 */
+  }
+}

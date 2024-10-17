@@ -25,13 +25,18 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
     let removeListeners: (() => void) | undefined;
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (!canvas) return;
+
       if (e.key === 'Alt') {
         canvas.isDrawingMode = false;
         Tool.panning.enable(canvas);
-      } else if (e.key === 'delete') {
-        const activeObject = canvas.getActiveObject();
-        if (activeObject) {
-          canvas.remove(activeObject);
+      } else if (e.key === 'Delete') {
+        const activeObjects = canvas.getActiveObjects();
+        if (activeObjects.length > 0) {
+          activeObjects.forEach((obj) => {
+            canvas.remove(obj);
+          });
+          canvas.discardActiveObject();
           canvas.requestRenderAll();
         }
       }
@@ -55,11 +60,11 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
         removeListeners = Tool.pen.basic(canvas, brushWidth, brushColor);
         break;
       case 'select':
-        console.log("select");
+        console.log('select');
         removeListeners = Tool.selection.enable(canvas);
         break;
       case 'panning':
-        console.log("123123123");
+        console.log('123123123');
         removeListeners = Tool.panning.enable(canvas);
         break;
       case 'rectangle':
@@ -125,14 +130,38 @@ export const SwitchTool: React.FC<SwitchToolProps> = ({
   return (
     <div>
       <div className={styles.switchMargin}>
-      <a className={styles.switchPen} onClick={() => handleButtonClick('pen')}></a>
-      <a className={styles.switchIcon} onClick={() => handleButtonClick('select')}></a>
-      <a className={styles.switchMove} onClick={() => handleButtonClick('panning')}></a>
-      <a className={styles.switchRectangle} onClick={() => handleButtonClick('rectangle')}></a>
-      <a className={styles.switchAngle} onClick={() => handleButtonClick('triangle')}></a>
-      <a className={styles.switchCircle} onClick={() => handleButtonClick('circle')}></a>
-      <a className={styles.switchLine} onClick={() => handleButtonClick('line')}></a>
-      <a className={styles.switchText} onClick={() => handleButtonClick('text')}></a>
+        <a
+          className={styles.switchPen}
+          onClick={() => handleButtonClick('pen')}
+        ></a>
+        <a
+          className={styles.switchIcon}
+          onClick={() => handleButtonClick('select')}
+        ></a>
+        <a
+          className={styles.switchMove}
+          onClick={() => handleButtonClick('panning')}
+        ></a>
+        <a
+          className={styles.switchRectangle}
+          onClick={() => handleButtonClick('rectangle')}
+        ></a>
+        <a
+          className={styles.switchAngle}
+          onClick={() => handleButtonClick('triangle')}
+        ></a>
+        <a
+          className={styles.switchCircle}
+          onClick={() => handleButtonClick('circle')}
+        ></a>
+        <a
+          className={styles.switchLine}
+          onClick={() => handleButtonClick('line')}
+        ></a>
+        <a
+          className={styles.switchText}
+          onClick={() => handleButtonClick('text')}
+        ></a>
       </div>
 
       {SettingsComponent && (

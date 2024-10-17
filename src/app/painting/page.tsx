@@ -4,10 +4,10 @@ import styles from './_styles/whiteBoard.module.scss';
 
 export default function Painting() {
   return (
-  <div className={styles.paperBackground}>
-        <Sidebar>
-          <WhiteBoard/>
-        </Sidebar>
-        </div>
+    <div className={styles.paperBackground}>
+      <Sidebar>
+        <WhiteBoard />
+      </Sidebar>
+    </div>
   );
 }
