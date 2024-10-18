@@ -1,0 +1,74 @@
+.diaryRecordContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #faede3;
+  width: 500px;
+  height: 350px;
+  border-radius: 15px;
+  margin-top: 135px;
+  padding: 20px 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.recordTitle {
+  font-size: 30px;
+}
+
+.recordDate {
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 150px;
+}
+
+.recordContainer {
+  margin-left: 40px;
+}
+.recordBottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  background-color: white;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 15px 15px 0 0;
+}
+
+.dayStyle {
+  font-size: 70px;
+  color: #ff7f22;
+  margin-right: 20px;
+}
+
+.dayStyle2 {
+  font-size: 60px;
+  color: #ff7f22;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.dayStyle3 {
+  font-size: 50px;
+  color: #ff7f22;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.bottonContour {
+  border: none;
+  border-top: 1px solid lightgray;
+}
+
+.recordDay {
+  display: flex;
+  align-items: center;
+}
+
+.marginDay {
+  margin-right: 60px;
+}

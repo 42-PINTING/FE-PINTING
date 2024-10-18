@@ -6,6 +6,8 @@ import styles from '../[user]/_styles/page.module.scss';
 import { FiEdit2 } from 'react-icons/fi';
 import Image from 'next/image';
 import FollowerContainer from './_component/followerContainer';
+import TreeContainer from './_component/treeContainer';
+import DiaryRecord from './_component/diaryRecord';
 
 const DUMMY_DATA = {
   nickname: 'jugwak',
@@ -58,72 +60,8 @@ export default function ProfilePage() {
           </div>
         </div>
         <div>
-          <div className={styles.diaryRecordContainer}>
-            <div className={styles.titleContainer}>
-              <span className={styles.recordTitle}>그림 일기 기록</span>
-              <span className={styles.recordDate}>
-                +{DUMMY_DATA.recordDate}일 째
-              </span>
-            </div>
-            <div className={styles.recordBottom}>
-              <Image
-                src={'/_profileImage/Layer 2.svg'}
-                width={70}
-                height={100}
-                alt='dummy'
-              />
-              <div className={styles.recordContainer}>
-                <div className={styles.recordDay}>
-                  <span className={styles.dayStyle}>
-                    {DUMMY_DATA.recordDay}
-                  </span>
-                  <span className={styles.marginDay}>일</span>
-                  <span>동안 꾸준히 썼어요!</span>
-                </div>
-                <div className={styles.bottonContour}></div>
-                <div className={styles.recordDay}>
-                  <span className={styles.dayStyle2}>
-                    {DUMMY_DATA.heartCount}
-                  </span>
-                  <span className={styles.marginDay}>개</span>
-                  <span>하트를 나눠주었어요!</span>
-                </div>
-                <div className={styles.bottonContour}></div>
-                <div className={styles.recordDay}>
-                  <span className={styles.dayStyle3}>
-                    {DUMMY_DATA.recordAttendance}
-                  </span>
-                  <span className={styles.marginDay}>일</span>
-                  <span>동안 꾸준히 출석했어요!</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.treeContainer}>
-            <Image
-              src={'/_profileImage/Group 10.png'}
-              width={100}
-              height={100}
-              alt={'tree'}
-            />
-            <div className={styles.orangeContainer}>
-              <span>꾸준한 좋아요로 오랜지 나무를 키워주세요!</span>
-              <div>
-                <span className={styles.orangeText}>
-                  {DUMMY_DATA.likeCount}
-                </span>
-                <Image
-                  src={'/_profileImage/Frame 204.png'}
-                  width={22}
-                  height={24}
-                  alt={'apple'}
-                />
-              </div>
-              <button className={styles.orangeButton}>
-                오랜지나무 확인하기
-              </button>
-            </div>
-          </div>
+          <DiaryRecord dummyData={DUMMY_DATA} />
+          <TreeContainer dummyData={DUMMY_DATA} />
         </div>
       </div>
     </Sidebar>
