@@ -3,8 +3,15 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from '../_styles/treeContainer.module.scss';
+import { useRouter } from 'next/navigation';
 
 const TreeContainer: React.FC = ({ dummyData }) => {
+  const router = useRouter();
+
+  const onOrangeButtonHandler = () => {
+    router.push('/profile/${user}/orangeTree');
+  };
+
   return (
     <div className={styles.treeContainer}>
       <Image
@@ -24,7 +31,9 @@ const TreeContainer: React.FC = ({ dummyData }) => {
             alt={'apple'}
           />
         </div>
-        <button className={styles.orangeButton}>오랜지나무 확인하기</button>
+        <button className={styles.orangeButton} onClick={onOrangeButtonHandler}>
+          오랜지나무 확인하기
+        </button>
       </div>
     </div>
   );

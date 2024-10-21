@@ -10,23 +10,24 @@ import TreeContainer from './_component/treeContainer';
 import DiaryRecord from './_component/diaryRecord';
 
 const DUMMY_DATA = {
-  nickname: 'jugwak',
-  description: '자기소개 글입니다.',
-  profileImage: 'dfsf',
-  postCount: 10,
-  follower: 1,
-  following: 3,
+  nickname: 'jugwak', //본인 닉네임
+  description: '자기소개 글입니다.', //자기소개글
+  profileImage: 'dfsf', //이미지 URL
+  postCount: 10, //게시물 갯수
+  follower: 1, //팔로워
+  following: 3, //팔로잉
   images: [
+    //본인 계시물
     '/_dummyData/1.png',
     '/_dummyData/2.png',
     '/_dummyData/3.png',
     '/_dummyData/4.png',
   ],
-  recordDate: 32,
-  recordDay: 12,
-  heartCount: 20,
-  recordAttendance: 10,
-  likeCount: 40,
+  recordDate: 32, //출석일수
+  recordDay: 12, //연속 게시일수
+  heartCount: 20, //하트갯수
+  recordAttendance: 10, //꾸준히 출석한 일수
+  likeCount: 40, //좋아요 갯수
 };
 
 export default function ProfilePage() {
