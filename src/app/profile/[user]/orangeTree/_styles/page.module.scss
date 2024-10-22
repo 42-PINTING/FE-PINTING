@@ -1,0 +1,98 @@
+.mainContainer {
+  margin: 50px;
+}
+
+.orangeTreeTitle {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.backCoDrawing {
+  text-decoration: none;
+  color: gray;
+}
+
+.mainBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  height: 600px;
+  //   width: 900px;
+}
+
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //   border: 1px solid black;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.treeContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  gap: 80px;
+}
+
+.imageStyle {
+  margin-top: 50px;
+  //   margin: 50px;
+}
+
+.textContainer {
+  display: flex;
+  margin-right: 50px;
+  gap: 130px;
+}
+
+.plusText {
+  color: #ef5959;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  font-size: 20px;
+}
+
+.contour {
+  height: 80%;
+  border: none;
+  border-right: 1px solid lightgray;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+
+.myGrowth {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.contentContainer {
+  display: flex;
+  //   border: 1px solid black;
+  font-size: 22px;
+  width: 400px;
+  margin-top: 70px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.myTreeImage {
+  margin: 50px;
+}
