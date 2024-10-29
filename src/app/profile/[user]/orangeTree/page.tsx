@@ -31,28 +31,24 @@ export default function OrangeTree() {
                 alt={'tree'}
               />
               <Image
-                //   className={styles.imageStyle}
                 src='/treeImg/Level2.png'
                 width={100}
                 height={120}
                 alt={'tree'}
               />
               <Image
-                //   className={styles.imageStyle}
                 src='/treeImg/Level3.png'
                 width={100}
                 height={120}
                 alt={'tree'}
               />
               <Image
-                //   className={styles.imageStyle}
                 src='/treeImg/Level4.png'
                 width={100}
                 height={120}
                 alt={'tree'}
               />
               <Image
-                //   className={styles.imageStyle}
                 src='/treeImg/Level5.png'
                 width={100}
                 height={120}
