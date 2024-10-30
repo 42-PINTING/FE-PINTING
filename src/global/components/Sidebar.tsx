@@ -83,11 +83,12 @@ function NavPrivateItems({ nickname }: { nickname: string | undefined }) {
       text: '프로필',
       icon: <FaUser color='gray' />,
     },
-];
-
-  if (nickname) {
-    privateItems[0].href = `/profile/${nickname}`;
-  }
+  ];
+  //레이아웃 작업위해 주석처리
+  //   if (nickname) {
+  //     privateItems[0].href = `/profile/${nickname}`;
+  //   }
+  privateItems[0].href = '/profile/demo';
 
   return <NavItems list={privateItems} />;
 }
