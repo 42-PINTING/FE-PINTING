@@ -93,6 +93,7 @@ const WhiteBoard = () => {
 
   return (
     <>
+   
     <div className={styles.switchPanel}>
       <SwitchTool
         handleToolChange={setTool}
@@ -106,8 +107,9 @@ const WhiteBoard = () => {
       <canvas className={styles.canvasSet}
         id='canvas'
         ref={fabricRef}
-        style={{ border: '1px solid black', borderRadius:'8px' }}
+        style={{ border: '1px solid #EBEBEB', borderRadius:'8px' }}
       ></canvas>
+       
     </>
   );
 };

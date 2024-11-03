@@ -1,7 +1,7 @@
 .postGird {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 63px;
+  gap: 32px;
 }
 
 /* 화면이 1024px보다 작을 때, 그리드 열을 2개로 설정 */
