@@ -42,10 +42,19 @@ const WhiteBoard = () => {
       newCanvas.on('mouse:wheel', (opt: fabric.IEvent<WheelEvent>) => {
         const delta = opt.e.deltaY;
         let zoom = newCanvas.getZoom();
+
+        // 줌 인/줌 아웃의 제한 범위 설정 (예: 최소 0.5, 최대 3)
+        const minZoom = 0.5;
+        const maxZoom = 3;
+
+        // 줌 레벨 조정
         zoom *= 0.999 ** delta;
-        if (zoom > 20) zoom = 20;
-        if (zoom < 0.01) zoom = 0.01;
+
+        // 줌 레벨 제한
+        zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
+
         newCanvas.setZoom(zoom);
+
         opt.e.preventDefault();
         opt.e.stopPropagation();
       });
@@ -91,22 +100,42 @@ const WhiteBoard = () => {
     setTool(selectedTool);
   };
 
+  // const handlePrintJSON = () => {
+  //   if (canvasRef.current) {
+  //     // 예시로 SVG 파일을 경로로 추가
+  //     const svgPath = '/assets/your_svg_file.svg'; // 사용하고자 하는 SVG 파일 경로로 변경하세요.
+
+  //     // 첫 번째 객체의 sourcePath 속성을 설정
+  //     const firstObject = canvasRef.current.item(0);
+  //     if (firstObject && firstObject.type === 'path') {
+  //       firstObject.set('sourcePath', svgPath);
+  //     }
+
+  //     // toDatalessJSON을 사용하여 최적화된 JSON 출력
+  //     const datalessJSON = canvasRef.current.toDatalessJSON();
+  //     console.log('Optimized Dataless JSON:', JSON.stringify(datalessJSON));
+  //   }
+  // };
+
   return (
     <>
-    <div className={styles.switchPanel}>
-      <SwitchTool
-        handleToolChange={setTool}
-        tool={tool}
-        canvas={canvasRef.current}
-    
-      />
-     
-      <UndoRedoTool canvas={canvasRef.current} />
+      <div className={styles.switchPanel}>
+        <SwitchTool
+          handleToolChange={setTool}
+          tool={tool}
+          canvas={canvasRef.current}
+        />
+
+        <UndoRedoTool canvas={canvasRef.current} />
       </div>
-      <canvas className={styles.canvasSet}
+      {/* <button onClick={handlePrintJSON} style={{ marginBottom: '10px' }}>
+        Print Canvas JSON
+      </button> */}
+      <canvas
+        className={styles.canvasSet}
         id='canvas'
         ref={fabricRef}
-        style={{ border: '1px solid black', borderRadius:'8px' }}
+        style={{ border: '1px solid black', borderRadius: '8px' }}
       ></canvas>
     </>
   );
