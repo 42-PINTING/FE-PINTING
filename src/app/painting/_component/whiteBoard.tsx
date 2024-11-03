@@ -28,6 +28,9 @@ const WhiteBoard = () => {
       canvasRef.current = newCanvas;
       setCanvasSize(newCanvas);
 
+      const minZoom = 0.5;
+      newCanvas.setZoom(minZoom);
+
       newCanvas.forEachObject((obj) => {
         obj.selectable = false;
       });
@@ -43,14 +46,9 @@ const WhiteBoard = () => {
         const delta = opt.e.deltaY;
         let zoom = newCanvas.getZoom();
 
-        // 줌 인/줌 아웃의 제한 범위 설정 (예: 최소 0.5, 최대 3)
-        const minZoom = 0.5;
-        const maxZoom = 3;
+        const maxZoom = 3; // 원하는 최대 줌 값을 지정
 
-        // 줌 레벨 조정
         zoom *= 0.999 ** delta;
-
-        // 줌 레벨 제한
         zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
 
         newCanvas.setZoom(zoom);
