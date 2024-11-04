@@ -11,7 +11,7 @@ const PostList = () => {
     });
   return (
     <ul>
-      <li>Pos444444444444</li>
+      <li>멋지게 만들어주세요요요오오</li>
       <li>Post2</li>
       <li>Post3</li>
     </ul>
