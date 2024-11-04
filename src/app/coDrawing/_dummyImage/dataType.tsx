@@ -1,5 +1,5 @@
 export type Post = {
-  id: number; //게시물의 id
+  id: string; //게시물의 id
   image: string; //이미지 object
   title: string; //게시물 제목
   time: string; //작성한 시간

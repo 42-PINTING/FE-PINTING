@@ -5,20 +5,23 @@ import { DUMMY_DATA } from '../_dummyImage/dummyData';
 import PostItem from '../_component/myImagePost';
 import styles from '../_styles/postGrid.module.scss';
 import { useRouter } from 'next/navigation';
+import { useSetRecoilState } from 'recoil';
+import { detailPageState } from '../../../global/atoms/profile';
 
 const PostGrid: React.FC = () => {
   const router = useRouter();
+  const setDetailPageState = useSetRecoilState(detailPageState);
 
   const onPostButtonHandler = (post: any) => {
-    router.push({
-      pathname: `/coDrawing/${post.id}`,
-      query: {
-        image: post.image,
-        title: post.title,
-        time: post.time,
-        hashTag: post.hashTag,
-      },
+    setDetailPageState({
+      id: post.id,
+      title: post.title,
+      image: post.image,
+      time: post.time,
+      hashTag: post.hashTag,
     });
+
+    router.push(`/coDrawing/${post.id}`);
   };
 
   return (

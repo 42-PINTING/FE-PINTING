@@ -1,0 +1,118 @@
+.mainContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  height: 100%;
+  background-color: rgb(232, 232, 232);
+  padding: 30px;
+  gap: 30px;
+}
+
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  //   height: 80%;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 50px;
+}
+
+.detailTitle {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.rightMiddleContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.timeText {
+  font-size: 25px;
+  color: gray;
+}
+
+.hashTagText {
+  padding: 8px;
+  background-color: rgb(242, 242, 242);
+  color: #f9a932;
+  border-radius: 15px;
+  font-size: 20px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  margin-top: 50px;
+}
+
+.imageFixButton {
+  padding: 10px;
+  border: none;
+  background-color: rgb(242, 242, 242);
+  border-radius: 15px;
+  color: #f9a932;
+  font-size: 25px;
+}
+
+.responsiveImage {
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.leftContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  //   height: 80%;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.commentText {
+  font-size: 20px;
+  color: gray;
+  margin-top: 30px;
+}
+
+.hashTagContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 100px;
+}
+
+.hashTagText2 {
+  font-size: 25px;
+  color: gray;
+}
+
+.line {
+  margin-top: 50px;
+  border: none;
+  border-top: solid 1px lightgray;
+}
+
+.leftButtonContainer {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+}
+
+.leftButton {
+  padding: 15px;
+  border: none;
+  background-color: rgb(242, 242, 242);
+  border-radius: 15px;
+  color: gray;
+  font-size: 25px;
+}
