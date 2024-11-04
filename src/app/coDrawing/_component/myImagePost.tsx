@@ -9,7 +9,7 @@ type PostItemProps = {
 
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
   return (
-    <div>
+    <div className={styles.postItemContainer}>
       <Image
         className={styles.image}
         src={post.image}

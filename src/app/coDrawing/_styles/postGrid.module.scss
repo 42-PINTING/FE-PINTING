@@ -4,7 +4,29 @@
   gap: 63px;
 }
 
+.postButton {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  transition: box-shadow 0.2s ease; /* 효과 전환 부드럽게 */
+}
+
+.postButton:active {
+  box-shadow: none;
+}
+
 /* 화면이 1024px보다 작을 때, 그리드 열을 2개로 설정 */
+@media (min-width: 2560px) {
+  .postGird {
+    gap: 200px;
+  }
+}
+
 @media (max-width: 1500px) {
   .postGird {
     grid-template-columns: repeat(2, 1fr); /* 2개씩 표시 */

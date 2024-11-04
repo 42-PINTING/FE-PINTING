@@ -6,28 +6,28 @@ import { Post } from './dataType';
 
 export const DUMMY_DATA: Post[] = [
   {
-    id: 1,
+    id: '내 그림1',
     image: '/_dummyData/1.png',
     title: '첫번째 데모 이미지',
     time: '2024.9.11 13:00',
     hashTag: '#첫번째',
   },
   {
-    id: 2,
+    id: '내 그림2',
     image: '/_dummyData/2.png',
     title: '두번째 데모 이미지',
     time: '2024.9.11 13:00',
     hashTag: '#두번째',
   },
   {
-    id: 3,
+    id: '내 그림3',
     image: '/_dummyData/3.png',
     title: '세번째 데모 이미지',
     time: '2024.9.11 13:00',
     hashTag: '#세번째',
   },
   {
-    id: 4,
+    id: '내 그림4',
     image: '/_dummyData/4.png',
     title: '네번째 데모 이미지',
     time: '2024.9.11 13:00',

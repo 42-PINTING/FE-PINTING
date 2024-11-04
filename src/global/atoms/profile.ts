@@ -2,6 +2,25 @@ import { atom } from 'recoil';
 
 type BlockEmail = string;
 
+export type DetailPageProps = {
+  id: string | undefined;
+  title: string | undefined;
+  image: string | undefined;
+  time: string | undefined;
+  hashTag: string | undefined;
+};
+
+export const detailPageState = atom<DetailPageProps>({
+  key: 'detailPageState',
+  default: {
+    id: undefined,
+    title: undefined,
+    image: undefined,
+    time: undefined,
+    hashTag: undefined,
+  },
+});
+
 export type ProfileProps = {
   email: string | undefined;
   nickname: string | undefined;
