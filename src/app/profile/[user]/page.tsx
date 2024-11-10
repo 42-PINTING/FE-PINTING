@@ -60,7 +60,7 @@ export default function ProfilePage() {
             </div>
           </div>
         </div>
-        <div>
+        <div className={styles.rightContainer}>
           <DiaryRecord dummyData={DUMMY_DATA} />
           <TreeContainer dummyData={DUMMY_DATA} />
         </div>
